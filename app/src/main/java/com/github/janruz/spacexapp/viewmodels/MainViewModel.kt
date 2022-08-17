@@ -1,12 +1,21 @@
 package com.github.janruz.spacexapp.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.github.janruz.spacexapp.data.mockRockets
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import androidx.lifecycle.viewModelScope
+import com.github.janruz.spacexapp.data.repositories.RocketsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
+import javax.inject.Inject
 
-class MainViewModel: ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    rocketsRepository: RocketsRepository
+): ViewModel() {
 
-    private val _rockets = MutableStateFlow(mockRockets)
-    val rockets = _rockets.asStateFlow()
+    val rockets = rocketsRepository.allRockets.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(),
+        initialValue = listOf()
+    )
 }
