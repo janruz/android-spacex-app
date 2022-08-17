@@ -1,5 +1,6 @@
 package com.github.janruz.spacexapp.di
 
+import com.github.janruz.spacexapp.data.networking.RocketsWebService
 import com.github.janruz.spacexapp.data.repositories.RocketsRepository
 import com.github.janruz.spacexapp.data.repositories.RocketsRepositoryImpl
 import dagger.Binds
@@ -25,5 +26,9 @@ object RepositoriesProvisionModule {
 
     @Provides
     @Singleton
-    fun provideRocketsRepositoryImpl() = RocketsRepositoryImpl()
+    fun provideRocketsRepositoryImpl(
+        rocketsWebService: RocketsWebService
+    ): RocketsRepositoryImpl {
+        return RocketsRepositoryImpl(rocketsWebService)
+    }
 }

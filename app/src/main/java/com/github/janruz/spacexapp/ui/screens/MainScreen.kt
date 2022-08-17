@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.mockRockets
-import com.github.janruz.spacexapp.models.Rocket
+import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.RocketCard
 import com.github.janruz.spacexapp.ui.theme.SpaceXAppTheme
 

@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.github.janruz.spacexapp.models.Rocket
+import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.theme.border
 
 @Composable

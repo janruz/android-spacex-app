@@ -19,6 +19,8 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        buildConfigField "String", 'BASE_API_URL', '"https://api.spacexdata.com"'
     }
 
     buildTypes {
@@ -65,7 +67,11 @@ dependencies {
     // Hilt
     implementation "com.google.dagger:hilt-android:2.39.1"
     kapt "com.google.dagger:hilt-compiler:2.39.1"
+    // Forces dagger to use new kotlin metadata - without that, dagger would fail to build
     kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
+
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
 
     testImplementation 'junit:junit:4.13.2'
 

@@ -1,6 +1,6 @@
 package com.github.janruz.spacexapp.data
 
-import com.github.janruz.spacexapp.models.Rocket
+import com.github.janruz.spacexapp.data.models.Rocket
 
 val mockRockets = listOf(
     Rocket(
