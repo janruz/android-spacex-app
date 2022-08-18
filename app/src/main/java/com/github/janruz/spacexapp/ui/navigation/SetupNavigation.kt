@@ -3,6 +3,7 @@ package com.github.janruz.spacexapp.ui.navigation
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
@@ -23,17 +24,30 @@ fun SetupNavigation(
     navController: NavHostController,
     mainViewModel: MainViewModel
 ) {
+    var topBarVisible by remember { mutableStateOf(true) }
+
+    LaunchedEffect(Unit) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            topBarVisible = destination.route == "/rockets"
+        }
+    }
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                backgroundColor = if(isSystemInDarkTheme()) Color.Black else Color.White
+            AnimatedVisibility(
+                visible = topBarVisible,
+                enter = slideInVertically { -it },
+                exit = slideOutVertically { -it }
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.spacex_logo),
-                    contentDescription = "",
-                    modifier = Modifier.padding(16.dp)
-                )
+                TopAppBar(
+                    backgroundColor = if(isSystemInDarkTheme()) Color.Black else Color.White
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.spacex_logo),
+                        contentDescription = "",
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
             }
         }
     ) { paddingValues ->
@@ -44,7 +58,7 @@ fun SetupNavigation(
         ) {
 
             rocketsComposable(navController, mainViewModel)
-            rocketDetailComposable()
+            rocketDetailComposable(navController, mainViewModel)
         }
     }
 

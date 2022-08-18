@@ -4,21 +4,15 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Scaffold
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.mockRockets
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.RocketCard
@@ -30,10 +24,10 @@ fun RocketsScreen(
     rockets: List<Rocket>,
     onRocketClick: (Rocket) -> Unit
 ) {
-    var rocketCardsVisible by remember { mutableStateOf(false) }
+    var rocketCardsVisible by rememberSaveable { mutableStateOf(false) }
 
     LaunchedEffect(rockets) {
-        if(rockets.isNotEmpty()) {
+        if(!rocketCardsVisible && rockets.isNotEmpty()) {
             delay(500)
             rocketCardsVisible = true
         }
@@ -62,7 +56,7 @@ fun RocketsScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun MainScreenPreview() {
+private fun RocketsScreenPreview() {
     SpaceXAppTheme {
         RocketsScreen(rockets = mockRockets, onRocketClick = {})
     }

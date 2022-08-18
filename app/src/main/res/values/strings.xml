@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">SpaceX App</string>
     <string name="rockets_title">Rockets</string>
+    <string name="rocket_active">Active</string>
+    <string name="rocket_inactive">Inactive</string>
 </resources>

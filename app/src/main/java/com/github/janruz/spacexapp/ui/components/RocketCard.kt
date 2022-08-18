@@ -42,31 +42,9 @@ fun RocketCard(
         border = BorderStroke(width = 1.dp, MaterialTheme.colors.border)
     ) {
         Column {
-            AsyncImage(
-                model = rocket.images.firstOrNull(),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier
-                    .aspectRatio(ratio = 4 / 3f)
-                    .fillMaxWidth()
-                    .layoutId("rocket_image")
-            )
+            AspectRatioImage(imageUrl = rocket.images.firstOrNull())
 
-            Box(
-                modifier = Modifier
-                    .padding(horizontal = 12.dp)
-                    .padding(top = 12.dp)
-                    .layoutId("active_label")
-            ) {
-                Text(
-                    text = if(rocket.active) "Active" else "Inactive",
-                    color = Color.White,
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(if(rocket.active) MaterialTheme.colors.activeGreen else MaterialTheme.colors.red)
-                        .padding(vertical = 4.dp, horizontal = 6.dp)
-                )
-            }
+            RocketActiveLabel(isActive = rocket.active)
 
             Text(
                 rocket.name,

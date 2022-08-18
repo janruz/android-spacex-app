@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.data.repositories.RocketsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
