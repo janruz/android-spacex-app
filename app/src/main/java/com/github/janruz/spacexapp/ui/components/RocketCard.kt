@@ -2,6 +2,7 @@ package com.github.janruz.spacexapp.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -24,7 +25,8 @@ import com.github.janruz.spacexapp.ui.theme.red
 
 @Composable
 fun RocketCard(
-    rocket: Rocket
+    rocket: Rocket,
+    onClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -34,7 +36,8 @@ fun RocketCard(
                 start = 12.dp,
                 end = 12.dp,
                 bottom = 6.dp
-            ),
+            )
+            .clickable { onClick() },
         elevation = 3.dp,
         border = BorderStroke(width = 1.dp, MaterialTheme.colors.border)
     ) {
@@ -98,5 +101,5 @@ private fun RocketCardPreview() {
         )
     )
 
-    RocketCard(rocket = sampleRocket)
+    RocketCard(rocket = sampleRocket, onClick = {})
 }

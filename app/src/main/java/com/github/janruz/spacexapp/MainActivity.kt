@@ -4,9 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import com.github.janruz.spacexapp.ui.screens.MainScreen
+import androidx.navigation.compose.rememberNavController
+import com.github.janruz.spacexapp.ui.navigation.SetupNavigation
 import com.github.janruz.spacexapp.ui.theme.SpaceXAppTheme
 import com.github.janruz.spacexapp.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,10 +19,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val rockets by mainViewModel.rockets.collectAsState()
+            val navController = rememberNavController()
 
             SpaceXAppTheme {
-                MainScreen(rockets)
+                SetupNavigation(navController, mainViewModel)
             }
         }
     }

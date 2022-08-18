@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
@@ -27,8 +26,9 @@ import com.github.janruz.spacexapp.ui.theme.SpaceXAppTheme
 import kotlinx.coroutines.delay
 
 @Composable
-fun MainScreen(
-    rockets: List<Rocket>
+fun RocketsScreen(
+    rockets: List<Rocket>,
+    onRocketClick: (Rocket) -> Unit
 ) {
     var rocketCardsVisible by remember { mutableStateOf(false) }
 
@@ -39,43 +39,24 @@ fun MainScreen(
         }
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                backgroundColor = if(isSystemInDarkTheme()) Color.Black else Color.White
+    LazyColumn {
+        item {
+            Spacer(modifier = Modifier.padding(3.dp))
+        }
+
+        items(rockets) { rocket ->
+            AnimatedVisibility(
+                visible = rocketCardsVisible,
+                enter = slideInHorizontally(animationSpec = tween(durationMillis = 400), initialOffsetX = {-it}),
+                exit = slideOutHorizontally()
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.spacex_logo),
-                    contentDescription = "",
-                    modifier = Modifier.padding(16.dp)
-                )
+                RocketCard(rocket, onClick = { onRocketClick(rocket) })
             }
         }
-    ) { paddingValues ->
 
-            LazyColumn(
-                modifier = Modifier
-                    .padding(paddingValues)
-            ) {
-                item {
-                    Spacer(modifier = Modifier.padding(3.dp))
-                }
-
-                items(rockets) { rocket ->
-                    AnimatedVisibility(
-                        visible = rocketCardsVisible,
-                        enter = slideInHorizontally(animationSpec = tween(durationMillis = 400), initialOffsetX = {-it}),
-                        exit = slideOutHorizontally()
-                    ) {
-                        RocketCard(rocket)
-                    }
-                }
-
-                item {
-                    Spacer(modifier = Modifier.padding(3.dp))
-                }
-            }
-
+        item {
+            Spacer(modifier = Modifier.padding(3.dp))
+        }
     }
 }
 
@@ -83,6 +64,6 @@ fun MainScreen(
 @Composable
 fun MainScreenPreview() {
     SpaceXAppTheme {
-        MainScreen(rockets = mockRockets)
+        RocketsScreen(rockets = mockRockets, onRocketClick = {})
     }
 }
