@@ -33,6 +33,14 @@ val Colors.border: Color get() {
     return Color.LightGray
 }
 
+val Colors.activeGreen: Color get() {
+    return Green
+}
+
+val Colors.red: Color get() {
+    return Red
+}
+
 @Composable
 fun SpaceXAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
