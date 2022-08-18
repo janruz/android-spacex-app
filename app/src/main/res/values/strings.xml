@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Space-X App</string>
-    <string name="rockets_title">Space-X Rockets</string>
+    <string name="app_name">SpaceX App</string>
+    <string name="rockets_title">Rockets</string>
 </resources>
