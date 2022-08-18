@@ -1,31 +1,45 @@
 package com.github.janruz.spacexapp.data.repositories
 
-import com.github.janruz.spacexapp.data.mockRockets
+import android.accounts.NetworkErrorException
+import com.github.janruz.spacexapp.data.local.RocketsLocalStorage
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.data.models.asRockets
 import com.github.janruz.spacexapp.data.networking.RocketsWebService
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import retrofit2.HttpException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 interface RocketsRepository {
-    val allRockets: Flow<List<Rocket>>
+    suspend fun getRocketsFromCache(): Result<List<Rocket>>
+    suspend fun fetchRockets(): Result<List<Rocket>>
 }
 
 class RocketsRepositoryImpl @Inject constructor(
-    private val rocketsWebService: RocketsWebService
+    private val rocketsWebService: RocketsWebService,
+    private val rocketsLocalStorage: RocketsLocalStorage
 ) : RocketsRepository {
 
-    override val allRockets: Flow<List<Rocket>>
-        get() = flow {
-            emit(mockRockets)
-            delay(5_000)
+    override suspend fun getRocketsFromCache(): Result<List<Rocket>> = withContext(Dispatchers.IO) {
+        rocketsLocalStorage.getRockets()
+    }
 
-            while(true) {
-                emit(rocketsWebService.getAllRockets().asRockets)
+    override suspend fun fetchRockets(): Result<List<Rocket>> = withContext(Dispatchers.IO) {
+        try {
+            val rockets = rocketsWebService.getAllRockets().asRockets
+            rocketsLocalStorage.saveRockets(rockets)
+            Result.success(rockets)
+        } catch(e: Exception) {
 
-                delay(5_000)
+            when(e) {
+                is HttpException,
+                is SocketTimeoutException,
+                is UnknownHostException -> Result.failure(e)
+                else -> throw e
             }
         }
+    }
 }

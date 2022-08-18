@@ -1,5 +1,6 @@
 package com.github.janruz.spacexapp.di
 
+import com.github.janruz.spacexapp.data.local.RocketsLocalStorage
 import com.github.janruz.spacexapp.data.networking.RocketsWebService
 import com.github.janruz.spacexapp.data.repositories.RocketsRepository
 import com.github.janruz.spacexapp.data.repositories.RocketsRepositoryImpl
@@ -27,8 +28,9 @@ object RepositoriesProvisionModule {
     @Provides
     @Singleton
     fun provideRocketsRepositoryImpl(
-        rocketsWebService: RocketsWebService
+        rocketsWebService: RocketsWebService,
+        rocketsLocalStorage: RocketsLocalStorage
     ): RocketsRepositoryImpl {
-        return RocketsRepositoryImpl(rocketsWebService)
+        return RocketsRepositoryImpl(rocketsWebService, rocketsLocalStorage)
     }
 }
