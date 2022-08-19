@@ -74,13 +74,10 @@ fun NavDrawerBody(
     ) {
 
         items(items) { item ->
-            val backgroundColor = if(item.id == activeItemId) MaterialTheme.colors.highlight else
-                Color.Transparent
 
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(backgroundColor, shape = RoundedCornerShape(8.dp))
                     .clickable {
                         onItemClick(item)
                     }
@@ -88,7 +85,7 @@ fun NavDrawerBody(
             ) {
                 Icon(
                     painter = painterResource(id = item.iconId),
-                    tint = if(item.id == activeItemId) Color.White else MaterialTheme.colors.onBackground,
+                    tint = if(item.id == activeItemId) MaterialTheme.colors.highlight else MaterialTheme.colors.onBackground,
                     contentDescription = stringResource(id = item.titleId)
                 )
 
@@ -96,7 +93,7 @@ fun NavDrawerBody(
 
                 Text(
                     text = stringResource(id = item.titleId),
-                    color = if(item.id == activeItemId) Color.White else MaterialTheme.colors.onBackground,
+                    color = if(item.id == activeItemId) MaterialTheme.colors.highlight else MaterialTheme.colors.onBackground,
                     style = TextStyle(fontSize = 18.sp),
                     modifier = Modifier.weight(1f)
                 )
