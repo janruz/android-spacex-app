@@ -7,9 +7,6 @@ import com.github.janruz.spacexapp.data.networking.RocketsWebService
 import com.github.janruz.spacexapp.data.safeApiCall
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
-import java.net.SocketTimeoutException
-import java.net.UnknownHostException
 import javax.inject.Inject
 
 interface RocketsRepository {
