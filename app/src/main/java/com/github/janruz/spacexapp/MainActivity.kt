@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.navigation.compose.rememberNavController
-import com.github.janruz.spacexapp.ui.navigation.SetupNavigation
+import com.github.janruz.spacexapp.ui.screens.MainScreen
 import com.github.janruz.spacexapp.ui.theme.SpaceXAppTheme
 import com.github.janruz.spacexapp.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
 
             SpaceXAppTheme {
-                SetupNavigation(navController, mainViewModel)
+                MainScreen(navController, mainViewModel)
             }
         }
     }

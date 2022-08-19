@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">SpaceX App</string>
-    <string name="rockets_title">Rockets</string>
+    <string name="screen_title_rockets">Rockets</string>
+    <string name="screen_title_about_app">About the App</string>
+    <string name="screen_title_company_info">About SpaceX</string>
+
+
+
     <string name="rocket_active">Active</string>
     <string name="rocket_inactive">Inactive</string>
+    <string name="spacex_logo">SpaceX Logo</string>
 </resources>

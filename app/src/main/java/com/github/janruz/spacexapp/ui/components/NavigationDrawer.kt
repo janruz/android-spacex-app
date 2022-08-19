@@ -1,6 +1,7 @@
 package com.github.janruz.spacexapp.ui.components
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,7 +28,7 @@ import com.github.janruz.spacexapp.ui.theme.inactiveRed
 
 data class NavDrawerItem(
     val id: String,
-    val title: String,
+    @StringRes val titleId: Int,
     @DrawableRes val iconId: Int
 )
 
@@ -39,7 +41,7 @@ fun NavDrawerHeader() {
     ) {
         Image(
             painter = painterResource(id = R.drawable.spacex_logo),
-            contentDescription = "",
+            contentDescription = stringResource(id = R.string.spacex_logo),
             modifier = Modifier
                 .padding(
                     top = 48.dp,
@@ -87,13 +89,13 @@ fun NavDrawerBody(
                 Icon(
                     painter = painterResource(id = item.iconId),
                     tint = if(item.id == activeItemId) Color.White else MaterialTheme.colors.onBackground,
-                    contentDescription = ""
+                    contentDescription = stringResource(id = item.titleId)
                 )
 
                 Spacer(modifier = Modifier.width(16.dp))
 
                 Text(
-                    item.title,
+                    text = stringResource(id = item.titleId),
                     color = if(item.id == activeItemId) Color.White else MaterialTheme.colors.onBackground,
                     style = TextStyle(fontSize = 18.sp),
                     modifier = Modifier.weight(1f)
