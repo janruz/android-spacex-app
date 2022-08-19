@@ -9,8 +9,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.components.*
 import com.github.janruz.spacexapp.viewmodels.MainViewModel
 import kotlinx.coroutines.launch
@@ -33,7 +36,9 @@ fun SetupNavigation(
 
     val navDrawerItems = remember {
         listOf(
-            NavDrawerItem("", "Rockets", Icons.Default.Home)
+            NavDrawerItem("Company Info", "About SpaceX", R.drawable.ic_business),
+            NavDrawerItem("Rockets", "Rockets", R.drawable.ic_rocket),
+            NavDrawerItem("About the App", "About the App", R.drawable.ic_info)
         )
     }
 
