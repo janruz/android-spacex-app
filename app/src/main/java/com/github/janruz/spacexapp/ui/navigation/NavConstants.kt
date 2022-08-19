@@ -7,9 +7,12 @@ object NavConstants {
 
     const val COMPANY_INFO_SCREEN = "/companyInfo"
 
-    const val ROCKETS_LIST_SCREEN = "/rockets"
+    const val ROCKETS_GRAPH = "/rockets"
+    const val ROCKETS_LIST_SCREEN = "$ROCKETS_GRAPH/all"
     const val ROCKET_ID_KEY = "rocketId"
-    const val ROCKET_DETAIL_SCREEN = "/rockets/{$ROCKET_ID_KEY}"
+    const val ROCKET_DETAIL_SCREEN_PREFIX = "$ROCKETS_GRAPH/detail"
+    const val ROCKET_DETAIL_SCREEN = "$ROCKET_DETAIL_SCREEN_PREFIX/{$ROCKET_ID_KEY}"
+
     const val ABOUT_APP_SCREEN = "/aboutApp"
 
     val DRAWER_ITEMS = listOf(

@@ -4,6 +4,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -11,11 +12,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.github.janruz.spacexapp.ui.navigation.NavConstants
 import com.github.janruz.spacexapp.ui.screens.RocketDetailScreen
-import com.github.janruz.spacexapp.viewmodels.MainViewModel
+import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
 
 fun NavGraphBuilder.rocketDetailComposable(
-    navigateUp: () -> Unit,
-    mainViewModel: MainViewModel
+    navController: NavHostController,
+    navigateUp: () -> Unit
 ) {
     composable(
         route = NavConstants.ROCKET_DETAIL_SCREEN,
@@ -25,9 +26,15 @@ fun NavGraphBuilder.rocketDetailComposable(
             }
         )
     ) { backStackEntry ->
+        val parentEntry = remember(backStackEntry) {
+            navController.getBackStackEntry(NavConstants.ROCKETS_GRAPH)
+        }
+
+        val rocketsViewModel = hiltViewModel<RocketsViewModel>(parentEntry)
+
         val rocketId = backStackEntry.arguments?.getString(NavConstants.ROCKET_ID_KEY) ?: ""
 
-        val rockets by mainViewModel.rockets.collectAsState()
+        val rockets by rocketsViewModel.rockets.collectAsState()
         val rocket by remember(rocketId) {
             derivedStateOf {
                 rockets.single { it.id == rocketId }

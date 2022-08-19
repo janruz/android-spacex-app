@@ -72,6 +72,9 @@ dependencies {
     // Forces dagger to use new kotlin metadata - without that, dagger would fail to build
     kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
 
+    // Hilt's integration with Navigation and Jetpack Compose
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"

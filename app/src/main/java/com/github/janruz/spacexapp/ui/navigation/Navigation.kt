@@ -6,15 +6,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.navigation
 import com.github.janruz.spacexapp.ui.navigation.company.companyInfoComposable
 import com.github.janruz.spacexapp.ui.navigation.rockets.rocketDetailComposable
 import com.github.janruz.spacexapp.ui.navigation.rockets.rocketsComposable
-import com.github.janruz.spacexapp.viewmodels.MainViewModel
 
 @Composable
 fun SetupNavigation(
     navController: NavHostController,
-    mainViewModel: MainViewModel,
     paddingValues: PaddingValues
 ) {
     val navigator = remember(navController) {
@@ -28,8 +27,21 @@ fun SetupNavigation(
     ) {
 
         companyInfoComposable()
-        rocketsComposable(navigateToDetailScreen = navigator.toRocketDetail, mainViewModel)
-        rocketDetailComposable(navigateUp = navigator.up, mainViewModel)
+
+        navigation(
+            startDestination = NavConstants.ROCKETS_LIST_SCREEN,
+            route = NavConstants.ROCKETS_GRAPH
+        ) {
+            rocketsComposable(
+                navController,
+                navigateToDetailScreen = navigator.toRocketDetail
+            )
+
+            rocketDetailComposable(
+                navController,
+                navigateUp = navigator.up
+            )
+        }
     }
 }
 

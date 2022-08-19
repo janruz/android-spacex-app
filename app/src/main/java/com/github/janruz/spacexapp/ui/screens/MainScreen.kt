@@ -10,13 +10,13 @@ import com.github.janruz.spacexapp.ui.components.NavDrawerBody
 import com.github.janruz.spacexapp.ui.components.NavDrawerHeader
 import com.github.janruz.spacexapp.ui.navigation.NavConstants
 import com.github.janruz.spacexapp.ui.navigation.SetupNavigation
-import com.github.janruz.spacexapp.viewmodels.MainViewModel
+import com.github.janruz.spacexapp.utilities.isRocketDetail
+import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun MainScreen(
-    navController: NavHostController,
-    mainViewModel: MainViewModel
+    navController: NavHostController
 ) {
     var appBarVisible by remember { mutableStateOf(true) }
 
@@ -24,8 +24,9 @@ fun MainScreen(
 
     LaunchedEffect(Unit) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            appBarVisible = !destination.isRocketDetail
+
             destination.route?.let { route ->
-                appBarVisible = !route.startsWith("/rockets/")
 
                 NavConstants.DRAWER_ITEMS.find { it.id == route }?.let { item ->
                     activeDrawerItem = item
@@ -63,6 +64,6 @@ fun MainScreen(
             )
         }
     ) { paddingValues ->
-        SetupNavigation(navController, mainViewModel, paddingValues)
+        SetupNavigation(navController, paddingValues)
     }
 }
