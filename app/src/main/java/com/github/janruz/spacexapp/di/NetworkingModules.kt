@@ -2,6 +2,7 @@ package com.github.janruz.spacexapp.di
 
 import com.github.janruz.spacexapp.BuildConfig
 import com.github.janruz.spacexapp.data.models.Rocket
+import com.github.janruz.spacexapp.data.networking.CompanyWebService
 import com.github.janruz.spacexapp.data.networking.RocketsWebService
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -26,18 +27,18 @@ object NetworkingProvisionModule {
 
     @Provides
     @Singleton
-    fun provideListOfRocketsJsonAdapter(moshi: Moshi): JsonAdapter<List<Rocket>> {
-        val type = Types.newParameterizedType(List::class.java, Rocket::class.java)
-
-        return moshi.adapter<List<Rocket>>(type)
-    }
-
-    @Provides
-    @Singleton
     fun provideRocketsWebService(
         retrofit: Retrofit
     ): RocketsWebService {
         return retrofit.create(RocketsWebService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCompanyWebService(
+        retrofit: Retrofit
+    ): CompanyWebService {
+        return retrofit.create(CompanyWebService::class.java)
     }
 
     @Provides

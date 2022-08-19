@@ -1,7 +1,11 @@
 package com.github.janruz.spacexapp.di
 
-import com.github.janruz.spacexapp.data.local.RocketsLocalStorage
+import com.github.janruz.spacexapp.data.local.CompanyCacheStorage
+import com.github.janruz.spacexapp.data.local.RocketsCacheStorage
+import com.github.janruz.spacexapp.data.networking.CompanyWebService
 import com.github.janruz.spacexapp.data.networking.RocketsWebService
+import com.github.janruz.spacexapp.data.repositories.CompanyRepository
+import com.github.janruz.spacexapp.data.repositories.CompanyRepositoryImpl
 import com.github.janruz.spacexapp.data.repositories.RocketsRepository
 import com.github.janruz.spacexapp.data.repositories.RocketsRepositoryImpl
 import dagger.Binds
@@ -19,6 +23,11 @@ abstract class RepositoriesBindingsModule {
     abstract fun bindRocketsRepository(
         rockersRepositoryImpl: RocketsRepositoryImpl
     ): RocketsRepository
+
+    @Binds
+    abstract fun bindCompanyRepository(
+        companyRepositoryImpl: CompanyRepositoryImpl
+    ): CompanyRepository
 }
 
 @Module
@@ -29,8 +38,17 @@ object RepositoriesProvisionModule {
     @Singleton
     fun provideRocketsRepositoryImpl(
         rocketsWebService: RocketsWebService,
-        rocketsLocalStorage: RocketsLocalStorage
+        rocketsCacheStorage: RocketsCacheStorage
     ): RocketsRepositoryImpl {
-        return RocketsRepositoryImpl(rocketsWebService, rocketsLocalStorage)
+        return RocketsRepositoryImpl(rocketsWebService, rocketsCacheStorage)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCompanyRepositoryImpl(
+        companyWebService: CompanyWebService,
+        companyCacheStorage: CompanyCacheStorage
+    ): CompanyRepositoryImpl {
+        return CompanyRepositoryImpl(companyWebService, companyCacheStorage)
     }
 }
