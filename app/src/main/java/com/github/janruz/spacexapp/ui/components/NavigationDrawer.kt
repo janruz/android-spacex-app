@@ -35,6 +35,7 @@ fun NavDrawerHeader() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .background(MaterialTheme.colors.background)
     ) {
         Image(
             painter = painterResource(id = R.drawable.spacex_logo),
@@ -63,7 +64,11 @@ fun NavDrawerBody(
     onItemClick: (NavDrawerItem) -> Unit
 ) {
     LazyColumn(
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier
+            .background(MaterialTheme.colors.background)
+            .padding(16.dp)
+            .fillMaxSize()
+
     ) {
 
         items(items) { item ->
@@ -73,10 +78,10 @@ fun NavDrawerBody(
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
+                    .background(backgroundColor, shape = RoundedCornerShape(8.dp))
                     .clickable {
                         onItemClick(item)
                     }
-                    .background(backgroundColor, shape = RoundedCornerShape(8.dp))
                     .padding(16.dp)
             ) {
                 Icon(
