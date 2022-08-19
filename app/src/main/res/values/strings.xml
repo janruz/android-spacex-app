@@ -4,9 +4,8 @@
     <string name="screen_title_about_app">About the App</string>
     <string name="screen_title_company_info">About SpaceX</string>
 
-
-
     <string name="rocket_active">Active</string>
     <string name="rocket_inactive">Inactive</string>
     <string name="spacex_logo">SpaceX Logo</string>
+    <string name="about_app_information">This app has been developed by Jan Růžička as an interview task for a job application at Applifting.\n\nThe app or its author is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Space Exploration Technologies Corp (SpaceX), or any of its subsidiaries or its affiliates.\n\nThe names SpaceX as well as related names, marks, emblems and images are registered trademarks of their respective owners.</string>
 </resources>

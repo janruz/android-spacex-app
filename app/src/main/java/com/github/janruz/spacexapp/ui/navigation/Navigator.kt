@@ -1,6 +1,7 @@
 package com.github.janruz.spacexapp.ui.navigation
 
 import androidx.navigation.NavHostController
+import com.github.janruz.spacexapp.ui.components.NavDrawerItem
 import com.github.janruz.spacexapp.ui.navigation.NavConstants.ROCKET_DETAIL_SCREEN_PREFIX
 
 class Navigator(
@@ -12,5 +13,9 @@ class Navigator(
 
     val up: () -> Unit = {
         navController.navigateUp()
+    }
+
+    val toDrawerItem: (NavDrawerItem) -> Unit = { item ->
+        navController.navigate(item.id)
     }
 }

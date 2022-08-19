@@ -9,6 +9,7 @@ import com.github.janruz.spacexapp.ui.components.AnimatedAppBar
 import com.github.janruz.spacexapp.ui.components.NavDrawerBody
 import com.github.janruz.spacexapp.ui.components.NavDrawerHeader
 import com.github.janruz.spacexapp.ui.navigation.NavConstants
+import com.github.janruz.spacexapp.ui.navigation.Navigator
 import com.github.janruz.spacexapp.ui.navigation.SetupNavigation
 import com.github.janruz.spacexapp.utilities.isRocketDetail
 import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
@@ -18,6 +19,10 @@ import kotlinx.coroutines.launch
 fun MainScreen(
     navController: NavHostController
 ) {
+    val navigator = remember(navController) {
+        Navigator(navController)
+    }
+
     var appBarVisible by remember { mutableStateOf(true) }
 
     var activeDrawerItem by remember { mutableStateOf(NavConstants.DRAWER_ITEMS.first()) }
@@ -58,12 +63,12 @@ fun MainScreen(
                 onItemClick = { item ->
                     scope.launch {
                         scaffoldState.drawerState.close()
-                        navController.navigate(item.id)
+                        navigator.toDrawerItem(item)
                     }
                 }
             )
         }
     ) { paddingValues ->
-        SetupNavigation(navController, paddingValues)
+        SetupNavigation(navController, navigator, paddingValues)
     }
 }

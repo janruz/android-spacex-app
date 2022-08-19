@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.navigation
+import com.github.janruz.spacexapp.ui.navigation.about.aboutAppComposable
 import com.github.janruz.spacexapp.ui.navigation.company.companyInfoComposable
 import com.github.janruz.spacexapp.ui.navigation.rockets.rocketDetailComposable
 import com.github.janruz.spacexapp.ui.navigation.rockets.rocketsComposable
@@ -14,12 +15,9 @@ import com.github.janruz.spacexapp.ui.navigation.rockets.rocketsComposable
 @Composable
 fun SetupNavigation(
     navController: NavHostController,
+    navigator: Navigator,
     paddingValues: PaddingValues
 ) {
-    val navigator = remember(navController) {
-        Navigator(navController)
-    }
-
     NavHost(
         navController = navController,
         startDestination = NavConstants.COMPANY_INFO_SCREEN,
@@ -42,6 +40,8 @@ fun SetupNavigation(
                 navigateUp = navigator.up
             )
         }
+
+        aboutAppComposable()
     }
 }
 
