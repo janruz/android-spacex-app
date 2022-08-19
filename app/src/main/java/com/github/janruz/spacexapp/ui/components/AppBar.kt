@@ -6,10 +6,7 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
@@ -18,10 +15,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.R
-import kotlinx.coroutines.launch
 
 @Composable
-fun AppBar(
+fun TopBar(
+    showLogo: Boolean,
+    title: String?,
     onDrawerIconClick: () -> Unit
 ) {
     TopAppBar(
@@ -35,17 +33,27 @@ fun AppBar(
             )
         }
 
-        Image(
-            painter = painterResource(id = R.drawable.spacex_logo),
-            contentDescription = "",
-            modifier = Modifier.padding(16.dp)
-        )
+        if(showLogo || title == null) {
+            Image(
+                painter = painterResource(id = R.drawable.spacex_logo),
+                contentDescription = "",
+                modifier = Modifier.padding(16.dp)
+            )
+        } else {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.h6,
+                color = MaterialTheme.colors.onBackground
+            )
+        }
     }
 }
 
 @Composable
 fun AnimatedAppBar(
     visible: Boolean,
+    showLogo: Boolean,
+    title: String?,
     onDrawerIconClick: () -> Unit
 ) {
     AnimatedVisibility(
@@ -53,6 +61,6 @@ fun AnimatedAppBar(
         enter = slideInVertically { -it },
         exit = slideOutVertically { -it }
     ) {
-        AppBar(onDrawerIconClick)
+        TopBar(showLogo, title, onDrawerIconClick)
     }
 }

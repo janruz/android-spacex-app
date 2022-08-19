@@ -1,8 +1,10 @@
 package com.github.janruz.spacexapp.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.janruz.spacexapp.data.models.Rocket
+import com.github.janruz.spacexapp.data.repositories.CompanyRepository
 import com.github.janruz.spacexapp.data.repositories.RocketsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    rocketsRepository: RocketsRepository
+    rocketsRepository: RocketsRepository,
+    companyRepository: CompanyRepository
 ): ViewModel() {
 
     private val _rockets = MutableStateFlow(listOf<Rocket>())
@@ -33,6 +36,14 @@ class MainViewModel @Inject constructor(
                     _rockets.emit(it)
                 }
             }
+        }
+
+        viewModelScope.launch {
+            val savedCompany = companyRepository.getCompanyFromCache()
+            val a = savedCompany.isSuccess
+
+            val updatedCompany = companyRepository.fetchCompany()
+            val b = updatedCompany.isSuccess
         }
     }
 }

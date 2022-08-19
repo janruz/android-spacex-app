@@ -3,6 +3,7 @@ package com.github.janruz.spacexapp.ui.screens
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.github.janruz.spacexapp.ui.components.AnimatedAppBar
 import com.github.janruz.spacexapp.ui.components.NavDrawerBody
@@ -19,14 +20,16 @@ fun MainScreen(
 ) {
     var appBarVisible by remember { mutableStateOf(true) }
 
-    var activeDrawerItem by remember { mutableStateOf(NavConstants.DRAWER_ITEMS.first().id) }
+    var activeDrawerItem by remember { mutableStateOf(NavConstants.DRAWER_ITEMS.first()) }
 
     LaunchedEffect(Unit) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             destination.route?.let { route ->
                 appBarVisible = !route.startsWith("/rockets/")
 
-                activeDrawerItem = route
+                NavConstants.DRAWER_ITEMS.find { it.id == route }?.let { item ->
+                    activeDrawerItem = item
+                }
             }
         }
     }
@@ -39,6 +42,8 @@ fun MainScreen(
         topBar = {
             AnimatedAppBar(
                 visible = appBarVisible,
+                showLogo = activeDrawerItem.id == NavConstants.COMPANY_INFO_SCREEN,
+                title = stringResource(id = activeDrawerItem.titleId),
                 onDrawerIconClick = {
                     scope.launch { scaffoldState.drawerState.open() }
                 }
@@ -48,7 +53,7 @@ fun MainScreen(
             NavDrawerHeader()
             NavDrawerBody(
                 items = NavConstants.DRAWER_ITEMS,
-                activeItemId = activeDrawerItem,
+                activeItemId = activeDrawerItem.id,
                 onItemClick = { item ->
                     scope.launch {
                         scaffoldState.drawerState.close()
