@@ -14,7 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.theme.activeGreen
-import com.github.janruz.spacexapp.ui.theme.red
+import com.github.janruz.spacexapp.ui.theme.inactiveRed
 
 @Composable
 fun RocketActiveLabel(
@@ -30,7 +30,7 @@ fun RocketActiveLabel(
             color = Color.White,
             modifier = Modifier
                 .clip(RoundedCornerShape(4.dp))
-                .background(if (isActive) MaterialTheme.colors.activeGreen else MaterialTheme.colors.red)
+                .background(if (isActive) MaterialTheme.colors.activeGreen else MaterialTheme.colors.inactiveRed)
                 .padding(vertical = 4.dp, horizontal = 6.dp)
         )
     }

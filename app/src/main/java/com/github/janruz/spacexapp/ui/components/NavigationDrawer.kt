@@ -2,25 +2,27 @@ package com.github.janruz.spacexapp.ui.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.theme.border
+import com.github.janruz.spacexapp.ui.theme.highlight
+import com.github.janruz.spacexapp.ui.theme.inactiveRed
 
 data class NavDrawerItem(
     val id: String,
@@ -57,7 +59,7 @@ fun NavDrawerHeader() {
 @Composable
 fun NavDrawerBody(
     items: List<NavDrawerItem>,
-    itemTextStyle: TextStyle = TextStyle(fontSize = 18.sp),
+    activeItemId: String,
     onItemClick: (NavDrawerItem) -> Unit
 ) {
     LazyColumn(
@@ -65,16 +67,21 @@ fun NavDrawerBody(
     ) {
 
         items(items) { item ->
+            val backgroundColor = if(item.id == activeItemId) MaterialTheme.colors.highlight else
+                Color.Transparent
+
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable {
                         onItemClick(item)
                     }
+                    .background(backgroundColor, shape = RoundedCornerShape(8.dp))
                     .padding(16.dp)
             ) {
                 Icon(
                     painter = painterResource(id = item.iconId),
+                    tint = if(item.id == activeItemId) Color.White else MaterialTheme.colors.onBackground,
                     contentDescription = ""
                 )
 
@@ -82,7 +89,8 @@ fun NavDrawerBody(
 
                 Text(
                     item.title,
-                    style = itemTextStyle,
+                    color = if(item.id == activeItemId) Color.White else MaterialTheme.colors.onBackground,
+                    style = TextStyle(fontSize = 18.sp),
                     modifier = Modifier.weight(1f)
                 )
             }

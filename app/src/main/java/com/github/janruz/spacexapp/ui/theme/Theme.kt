@@ -37,8 +37,12 @@ val Colors.activeGreen: Color get() {
     return Green
 }
 
-val Colors.red: Color get() {
+val Colors.inactiveRed: Color get() {
     return Red
+}
+
+val Colors.highlight: Color get() {
+    return Red.copy(alpha = 0.7f)
 }
 
 @Composable

@@ -56,6 +56,7 @@ fun SetupNavigation(
             NavDrawerHeader()
             NavDrawerBody(
                 items = navDrawerItems,
+                activeItemId = navDrawerItems[1].id,
                 onItemClick = {}
             )
         }
