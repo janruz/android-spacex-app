@@ -1,7 +1,5 @@
 package com.github.janruz.spacexapp.ui.navigation.rockets
 
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -27,13 +25,12 @@ fun NavGraphBuilder.rocketsComposable(
 
         val rocketsViewModel = hiltViewModel<RocketsViewModel>(parentEntry)
 
-        val rockets by rocketsViewModel.rockets.collectAsState()
-        val (activeFilter, setActiveFilter) = rocketsViewModel.activeFilterEnabled
+        val (activeFilter, setActiveFilter) = rocketsViewModel.activeFilter
 
         val scope = rememberCoroutineScope()
 
         RocketsScreen(
-            rockets,
+            rockets = rocketsViewModel.rockets.value,
             activeFilter,
             setActiveFilter,
             onRocketClick = { rocket ->

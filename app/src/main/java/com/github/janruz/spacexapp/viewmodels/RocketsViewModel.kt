@@ -1,14 +1,13 @@
 package com.github.janruz.spacexapp.viewmodels
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.janruz.spacexapp.data.models.Rocket
-import com.github.janruz.spacexapp.data.repositories.CompanyRepository
 import com.github.janruz.spacexapp.data.repositories.RocketsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,32 +16,43 @@ class RocketsViewModel @Inject constructor(
     rocketsRepository: RocketsRepository
 ): ViewModel() {
 
-    private val _rockets = MutableStateFlow(listOf<Rocket>())
-    val rockets = _rockets.asStateFlow()
+    val rockets = derivedStateOf {
+        _allRockets.value.filterByActivity(activeFilter.value)
+    }
+    val activeFilter = mutableStateOf(RocketActiveFilter.ALL)
 
-    val activeFilterEnabled = mutableStateOf(RocketActiveFilter.ALL)
-
-    private var allRockets = listOf<Rocket>()
+    private var _allRockets = mutableStateOf(listOf<Rocket>())
+    val allRockets = _allRockets as State<List<Rocket>>
 
     init {
         viewModelScope.launch {
             val savedRocketsResult = rocketsRepository.getRocketsFromCache()
             if(savedRocketsResult.isSuccess) {
                 savedRocketsResult.getOrNull()?.let {
-                    _rockets.emit(it)
+                    _allRockets.value = it
                 }
             }
 
             val updatedRocketsResult = rocketsRepository.fetchRockets()
             if(updatedRocketsResult.isSuccess) {
                 updatedRocketsResult.getOrNull()?.let {
-                    _rockets.emit(it)
+                    _allRockets.value = it
                 }
             }
         }
     }
+}
 
-    enum class RocketActiveFilter {
-        ACTIVE, INACTIVE, ALL
+enum class RocketActiveFilter {
+    ACTIVE, INACTIVE, ALL
+}
+
+fun List<Rocket>.filterByActivity(filter: RocketActiveFilter): List<Rocket> {
+    return filter { rocket ->
+        when(filter) {
+            RocketActiveFilter.ACTIVE -> rocket.active
+            RocketActiveFilter.INACTIVE -> !rocket.active
+            RocketActiveFilter.ALL -> true
+        }
     }
 }

@@ -1,6 +1,5 @@
 package com.github.janruz.spacexapp.ui.navigation.rockets
 
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -34,10 +33,9 @@ fun NavGraphBuilder.rocketDetailComposable(
 
         val rocketId = backStackEntry.arguments?.getString(NavConstants.ROCKET_ID_KEY) ?: ""
 
-        val rockets by rocketsViewModel.rockets.collectAsState()
         val rocket by remember(rocketId) {
             derivedStateOf {
-                rockets.single { it.id == rocketId }
+                rocketsViewModel.allRockets.value.single { it.id == rocketId }
             }
         }
 

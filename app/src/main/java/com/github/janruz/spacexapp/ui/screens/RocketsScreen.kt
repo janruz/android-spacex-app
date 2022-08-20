@@ -20,20 +20,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.mockRockets
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.RadioTextButton
 import com.github.janruz.spacexapp.ui.components.RocketCard
 import com.github.janruz.spacexapp.ui.theme.SpaceXAppTheme
-import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
+import com.github.janruz.spacexapp.viewmodels.RocketActiveFilter
 import kotlinx.coroutines.delay
-import com.github.janruz.spacexapp.R
 
 @Composable
 fun RocketsScreen(
     rockets: List<Rocket>,
-    activeFilter: RocketsViewModel.RocketActiveFilter,
-    setActiveFilter: (RocketsViewModel.RocketActiveFilter) -> Unit,
+    activeFilter: RocketActiveFilter,
+    setActiveFilter: (RocketActiveFilter) -> Unit,
     onRocketClick: (Rocket) -> Unit
 ) {
     var rocketCardsVisible by rememberSaveable { mutableStateOf(false) }
@@ -61,20 +61,20 @@ fun RocketsScreen(
                 Row(Modifier.selectableGroup()) {
                     RadioTextButton(
                         text = stringResource(id = R.string.rocket_filter_activity_all),
-                        selected = activeFilter == RocketsViewModel.RocketActiveFilter.ALL,
-                        onSelect = { setActiveFilter(RocketsViewModel.RocketActiveFilter.ALL) }
+                        selected = activeFilter == RocketActiveFilter.ALL,
+                        onSelect = { setActiveFilter(RocketActiveFilter.ALL) }
                     )
 
                     RadioTextButton(
                         text = stringResource(id = R.string.rocket_filter_activity_active),
-                        selected = activeFilter == RocketsViewModel.RocketActiveFilter.ACTIVE,
-                        onSelect = { setActiveFilter(RocketsViewModel.RocketActiveFilter.ACTIVE) }
+                        selected = activeFilter == RocketActiveFilter.ACTIVE,
+                        onSelect = { setActiveFilter(RocketActiveFilter.ACTIVE) }
                     )
 
                     RadioTextButton(
                         text = stringResource(id = R.string.rocket_filter_activity_inactive),
-                        selected = activeFilter == RocketsViewModel.RocketActiveFilter.INACTIVE,
-                        onSelect = { setActiveFilter(RocketsViewModel.RocketActiveFilter.INACTIVE) }
+                        selected = activeFilter == RocketActiveFilter.INACTIVE,
+                        onSelect = { setActiveFilter(RocketActiveFilter.INACTIVE) }
                     )
                 }
             }
@@ -106,7 +106,7 @@ fun RocketsScreenPreview() {
     SpaceXAppTheme {
         RocketsScreen(
             rockets = mockRockets,
-            activeFilter = RocketsViewModel.RocketActiveFilter.ALL,
+            activeFilter = RocketActiveFilter.ALL,
             setActiveFilter = {},
             onRocketClick = {}
         )
