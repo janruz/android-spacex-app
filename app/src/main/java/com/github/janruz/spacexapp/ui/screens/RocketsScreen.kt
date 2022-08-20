@@ -24,6 +24,7 @@ import com.github.janruz.spacexapp.data.mockRockets
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.RadioTextButton
 import com.github.janruz.spacexapp.ui.components.RocketCard
+import com.github.janruz.spacexapp.ui.components.RocketSuccessRateSlider
 import com.github.janruz.spacexapp.ui.theme.SpaceXAppTheme
 import com.github.janruz.spacexapp.ui.theme.border
 import com.github.janruz.spacexapp.viewmodels.RocketActiveFilter
@@ -36,7 +37,7 @@ fun RocketsScreen(
     setActiveFilter: (RocketActiveFilter) -> Unit,
     successRateFilter: Float,
     onSuccessRateFilterChanged: (Float) -> Unit,
-    onSuccessRateFilterSelected: () -> Unit,
+    onSuccessRateFilterSelected: (UInt) -> Unit,
     onRocketClick: (Rocket) -> Unit
 ) {
     var rocketCardsVisible by rememberSaveable { mutableStateOf(false) }
@@ -87,19 +88,11 @@ fun RocketsScreen(
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colors.onBackground
                 )
-                Slider(
-                    value = successRateFilter,
-                    onValueChange = { onSuccessRateFilterChanged(it) },
-                    onValueChangeFinished = onSuccessRateFilterSelected,
-                    valueRange = 0f..100f,
-                    steps = 9,
-                    colors = SliderDefaults.colors(
-                        thumbColor = MaterialTheme.colors.onBackground,
-                        activeTrackColor = MaterialTheme.colors.secondary,
-                        inactiveTrackColor = MaterialTheme.colors.border,
-                        inactiveTickColor = MaterialTheme.colors.onBackground,
-                        activeTickColor = MaterialTheme.colors.onBackground
-                    )
+
+                RocketSuccessRateSlider(
+                    successRateFilter,
+                    onSuccessRateFilterChanged,
+                    onSuccessRateFilterSelected
                 )
             }
         }

@@ -38,7 +38,9 @@ fun NavGraphBuilder.rocketsComposable(
             setActiveFilter,
             successRateFilterRealtime,
             setSuccessRateFilterRealtime,
-            onSuccessRateFilterSelected = { setSuccessRateFilter(successRateFilterRealtime.toUInt()) },
+            onSuccessRateFilterSelected = { selectedValue ->
+                setSuccessRateFilter(selectedValue)
+            },
             onRocketClick = { rocket ->
                 scope.launch {
                     delay(200)
