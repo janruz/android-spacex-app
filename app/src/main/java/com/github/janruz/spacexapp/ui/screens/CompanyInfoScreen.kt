@@ -8,11 +8,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.data.models.Company
 import com.github.janruz.spacexapp.ui.components.InfoColumn
+import com.github.janruz.spacexapp.R
 
 @Composable
 fun CompanyInfoScreen(
@@ -43,13 +44,13 @@ fun CompanyInfoScreen(
         ) {
 
             InfoColumn(
-                label = "Founder",
+                label = stringResource(id = R.string.founder),
                 text = company.founder,
                 infoColumnsModifier
             )
 
             InfoColumn(
-                label = "Founded",
+                label = stringResource(id = R.string.founded),
                 text = company.founded.toString(),
                 infoColumnsModifier
             )
@@ -61,13 +62,13 @@ fun CompanyInfoScreen(
         ) {
 
             InfoColumn(
-                label = "CEO",
+                label = stringResource(id = R.string.ceo),
                 text = company.ceo,
                 infoColumnsModifier
             )
 
             InfoColumn(
-                label = "COO",
+                label = stringResource(id = R.string.coo),
                 text = company.coo,
                 infoColumnsModifier
             )
@@ -79,13 +80,13 @@ fun CompanyInfoScreen(
         ) {
 
             InfoColumn(
-                label = "Employees",
+                label = stringResource(id = R.string.employees),
                 text = company.employees.toString(),
                 infoColumnsModifier
             )
 
             InfoColumn(
-                label = "Valuation",
+                label = stringResource(id = R.string.valuation),
                 text = company.valuation.toString(),
                 infoColumnsModifier
             )
