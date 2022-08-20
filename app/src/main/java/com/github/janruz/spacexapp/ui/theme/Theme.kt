@@ -31,12 +31,16 @@ val Colors.border: Color get() {
     return if(isLight) Color.LightGray else Color.DarkGray
 }
 
-val Colors.activeGreen: Color get() {
+val Colors.positive: Color get() {
     return Green
 }
 
-val Colors.inactiveRed: Color get() {
+val Colors.negative: Color get() {
     return Red
+}
+
+val Colors.neutral: Color get() {
+    return Orange
 }
 
 @Composable

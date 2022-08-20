@@ -35,7 +35,20 @@ fun RocketCard(
         Column {
             AspectRatioImage(imageUrl = rocket.images.firstOrNull())
 
-            RocketActiveLabel(isActive = rocket.active)
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(top = 12.dp)
+            ) {
+                RocketActiveLabel(
+                    isActive = rocket.active
+                )
+
+                RocketSuccessRateLabel(
+                    successRate = rocket.successRate
+                )
+            }
 
             Text(
                 rocket.name,

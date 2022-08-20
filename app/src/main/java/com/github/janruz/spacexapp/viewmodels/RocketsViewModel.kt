@@ -18,8 +18,10 @@ class RocketsViewModel @Inject constructor(
 
     val rockets = derivedStateOf {
         _allRockets.value
-            .filterByActivity(activeFilter.value)
-            .filter { it.successRate >= successRateFilter.value }
+            .applyFiltering(
+                activeFilter = activeFilter.value,
+                minimumSuccessRate = successRateFilter.value
+            )
     }
     val activeFilter = mutableStateOf(RocketActiveFilter.ALL)
     val successRateFilter = mutableStateOf(0U)
@@ -50,12 +52,19 @@ enum class RocketActiveFilter {
     ACTIVE, INACTIVE, ALL
 }
 
-fun List<Rocket>.filterByActivity(filter: RocketActiveFilter): List<Rocket> {
+fun List<Rocket>.applyFiltering(
+    activeFilter: RocketActiveFilter,
+    minimumSuccessRate: UInt
+): List<Rocket> {
     return filter { rocket ->
-        when(filter) {
+        val activityPass = when(activeFilter) {
             RocketActiveFilter.ACTIVE -> rocket.active
             RocketActiveFilter.INACTIVE -> !rocket.active
             RocketActiveFilter.ALL -> true
         }
+
+        val successRatePass = rocket.successRate >= minimumSuccessRate
+
+        activityPass && successRatePass
     }
 }

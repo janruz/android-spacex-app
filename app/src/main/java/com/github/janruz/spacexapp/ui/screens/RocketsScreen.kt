@@ -82,7 +82,7 @@ fun RocketsScreen(
                 }
 
                 Text(
-                    text = stringResource(id = R.string.rocket_minimum_success_rate),
+                    text = stringResource(id = R.string.rocket_minimum_success_rate) + ": ${successRateFilter.toInt()} %",
                     style = MaterialTheme.typography.subtitle1,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colors.onBackground
