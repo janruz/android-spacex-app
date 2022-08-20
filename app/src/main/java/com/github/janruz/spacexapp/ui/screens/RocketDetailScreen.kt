@@ -121,6 +121,7 @@ private fun RocketDetailScreenPreview() {
         active = true,
         firstFlight = "2010-06-04",
         description = "Falcon 10 is the next generation of falcons.",
+        successRate = 40U,
         images = listOf(
             "https://farm1.staticflickr.com/929/28787338307_3453a11a77_b.jpg"
         )

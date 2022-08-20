@@ -7,6 +7,7 @@ data class Rocket(
     val name: String,
     val active: Boolean,
     val firstFlight: String,
+    val successRate: UInt,
     val description: String,
     val images: List<String>
 )
@@ -25,6 +26,9 @@ data class RocketFromApi(
     @field:Json(name = "first_flight")
     val firstFlight: String,
 
+    @field:Json(name = "success_rate_pct")
+    val successRate: UInt,
+
     @field:Json(name = "description")
     val description: String,
 
@@ -38,6 +42,7 @@ val RocketFromApi.asRocket: Rocket get() {
         name = this.name,
         active = this.active,
         firstFlight = this.firstFlight,
+        successRate = this.successRate,
         description = this.description,
         images = this.images
     )

@@ -17,9 +17,12 @@ class RocketsViewModel @Inject constructor(
 ): ViewModel() {
 
     val rockets = derivedStateOf {
-        _allRockets.value.filterByActivity(activeFilter.value)
+        _allRockets.value
+            .filterByActivity(activeFilter.value)
+            .filter { it.successRate >= successRateFilter.value }
     }
     val activeFilter = mutableStateOf(RocketActiveFilter.ALL)
+    val successRateFilter = mutableStateOf(0U)
 
     private var _allRockets = mutableStateOf(listOf<Rocket>())
     val allRockets = _allRockets as State<List<Rocket>>

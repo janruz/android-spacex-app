@@ -28,7 +28,7 @@ private val LightColorPalette = lightColors(
 )
 
 val Colors.border: Color get() {
-    return Color.LightGray
+    return if(isLight) Color.LightGray else Color.DarkGray
 }
 
 val Colors.activeGreen: Color get() {

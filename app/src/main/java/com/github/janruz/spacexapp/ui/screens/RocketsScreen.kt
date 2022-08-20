@@ -11,8 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -26,6 +25,7 @@ import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.RadioTextButton
 import com.github.janruz.spacexapp.ui.components.RocketCard
 import com.github.janruz.spacexapp.ui.theme.SpaceXAppTheme
+import com.github.janruz.spacexapp.ui.theme.border
 import com.github.janruz.spacexapp.viewmodels.RocketActiveFilter
 import kotlinx.coroutines.delay
 
@@ -34,6 +34,9 @@ fun RocketsScreen(
     rockets: List<Rocket>,
     activeFilter: RocketActiveFilter,
     setActiveFilter: (RocketActiveFilter) -> Unit,
+    successRateFilter: Float,
+    onSuccessRateFilterChanged: (Float) -> Unit,
+    onSuccessRateFilterSelected: () -> Unit,
     onRocketClick: (Rocket) -> Unit
 ) {
     var rocketCardsVisible by rememberSaveable { mutableStateOf(false) }
@@ -52,7 +55,7 @@ fun RocketsScreen(
                     .padding(top = 16.dp, start = 12.dp, end = 12.dp)
             ) {
                 Text(
-                    text = stringResource(id = R.string.filters),
+                    text = stringResource(id = R.string.rocket_activity),
                     style = MaterialTheme.typography.subtitle1,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colors.onBackground
@@ -77,6 +80,27 @@ fun RocketsScreen(
                         onSelect = { setActiveFilter(RocketActiveFilter.INACTIVE) }
                     )
                 }
+
+                Text(
+                    text = stringResource(id = R.string.rocket_minimum_success_rate),
+                    style = MaterialTheme.typography.subtitle1,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colors.onBackground
+                )
+                Slider(
+                    value = successRateFilter,
+                    onValueChange = { onSuccessRateFilterChanged(it) },
+                    onValueChangeFinished = onSuccessRateFilterSelected,
+                    valueRange = 0f..100f,
+                    steps = 9,
+                    colors = SliderDefaults.colors(
+                        thumbColor = MaterialTheme.colors.onBackground,
+                        activeTrackColor = MaterialTheme.colors.secondary,
+                        inactiveTrackColor = MaterialTheme.colors.border,
+                        inactiveTickColor = MaterialTheme.colors.onBackground,
+                        activeTickColor = MaterialTheme.colors.onBackground
+                    )
+                )
             }
         }
 
@@ -108,6 +132,9 @@ fun RocketsScreenPreview() {
             rockets = mockRockets,
             activeFilter = RocketActiveFilter.ALL,
             setActiveFilter = {},
+            successRateFilter = 0f,
+            onSuccessRateFilterChanged = {},
+            onSuccessRateFilterSelected = {},
             onRocketClick = {}
         )
     }

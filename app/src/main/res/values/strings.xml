@@ -20,4 +20,6 @@
     <string name="coo">COO</string>
     <string name="employees">Employees</string>
     <string name="valuation">Valuation</string>
+    <string name="rocket_activity">Activity</string>
+    <string name="rocket_minimum_success_rate">Minimum success rate</string>
 </resources>
