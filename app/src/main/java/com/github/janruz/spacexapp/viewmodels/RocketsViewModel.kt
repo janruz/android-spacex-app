@@ -1,5 +1,6 @@
 package com.github.janruz.spacexapp.viewmodels
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.janruz.spacexapp.data.models.Rocket
@@ -19,6 +20,10 @@ class RocketsViewModel @Inject constructor(
     private val _rockets = MutableStateFlow(listOf<Rocket>())
     val rockets = _rockets.asStateFlow()
 
+    val activeFilterEnabled = mutableStateOf(RocketActiveFilter.ALL)
+
+    private var allRockets = listOf<Rocket>()
+
     init {
         viewModelScope.launch {
             val savedRocketsResult = rocketsRepository.getRocketsFromCache()
@@ -35,5 +40,9 @@ class RocketsViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    enum class RocketActiveFilter {
+        ACTIVE, INACTIVE, ALL
     }
 }

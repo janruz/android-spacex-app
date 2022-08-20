@@ -23,7 +23,7 @@ fun TopBar(
     onDrawerIconClick: () -> Unit
 ) {
     TopAppBar(
-        backgroundColor = if(isSystemInDarkTheme()) Color.Black else Color.White
+        backgroundColor = MaterialTheme.colors.background,
     ) {
         IconButton(onClick = onDrawerIconClick) {
             Icon(

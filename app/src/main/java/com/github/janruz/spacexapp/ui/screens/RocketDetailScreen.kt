@@ -73,6 +73,7 @@ fun RocketDetailScreen(
             Text(
                 rocket.name,
                 style = MaterialTheme.typography.h5,
+                color = MaterialTheme.colors.onBackground,
                 modifier = Modifier
                     .padding(horizontal = 12.dp)
                     .padding(top = 12.dp)
@@ -81,6 +82,7 @@ fun RocketDetailScreen(
             Text(
                 rocket.description,
                 style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.onBackground,
                 modifier = Modifier
                     .padding(horizontal = 12.dp)
                     .padding(top = 6.dp)
@@ -90,6 +92,7 @@ fun RocketDetailScreen(
                 "First flight",
                 style = MaterialTheme.typography.subtitle1,
                 fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colors.onBackground,
                 modifier = Modifier
                     .padding(horizontal = 12.dp)
                     .padding(top = 24.dp)
@@ -98,6 +101,7 @@ fun RocketDetailScreen(
             Text(
                 rocket.firstFlight,
                 style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.onBackground,
                 modifier = Modifier
                     .padding(horizontal = 12.dp)
                     .padding(top = 8.dp)

@@ -28,14 +28,20 @@ fun NavGraphBuilder.rocketsComposable(
         val rocketsViewModel = hiltViewModel<RocketsViewModel>(parentEntry)
 
         val rockets by rocketsViewModel.rockets.collectAsState()
+        val (activeFilter, setActiveFilter) = rocketsViewModel.activeFilterEnabled
 
         val scope = rememberCoroutineScope()
 
-        RocketsScreen(rockets, onRocketClick = { rocket ->
-            scope.launch {
-                delay(200)
-                navigateToDetailScreen(rocket.id)
+        RocketsScreen(
+            rockets,
+            activeFilter,
+            setActiveFilter,
+            onRocketClick = { rocket ->
+                scope.launch {
+                    delay(200)
+                    navigateToDetailScreen(rocket.id)
+                }
             }
-        })
+        )
     }
 }

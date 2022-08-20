@@ -4,24 +4,37 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.material.Chip
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.RadioButton
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.data.mockRockets
 import com.github.janruz.spacexapp.data.models.Rocket
+import com.github.janruz.spacexapp.ui.components.RadioTextButton
 import com.github.janruz.spacexapp.ui.components.RocketCard
 import com.github.janruz.spacexapp.ui.theme.SpaceXAppTheme
+import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
 import kotlinx.coroutines.delay
 
 @Composable
 fun RocketsScreen(
     rockets: List<Rocket>,
+    activeFilter: RocketsViewModel.RocketActiveFilter,
+    setActiveFilter: (RocketsViewModel.RocketActiveFilter) -> Unit,
     onRocketClick: (Rocket) -> Unit
 ) {
     var rocketCardsVisible by rememberSaveable { mutableStateOf(false) }
@@ -34,6 +47,40 @@ fun RocketsScreen(
     }
 
     LazyColumn {
+        item {
+            Column(
+                modifier = Modifier
+                    .padding(top = 16.dp, start = 12.dp, end = 12.dp)
+            ) {
+                Text(
+                    text = "Filters",
+                    style = MaterialTheme.typography.subtitle1,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colors.onBackground
+                )
+
+                Row(Modifier.selectableGroup()) {
+                    RadioTextButton(
+                        text = "All",
+                        selected = activeFilter == RocketsViewModel.RocketActiveFilter.ALL,
+                        onSelect = { setActiveFilter(RocketsViewModel.RocketActiveFilter.ALL) }
+                    )
+
+                    RadioTextButton(
+                        text = "Active",
+                        selected = activeFilter == RocketsViewModel.RocketActiveFilter.ACTIVE,
+                        onSelect = { setActiveFilter(RocketsViewModel.RocketActiveFilter.ACTIVE) }
+                    )
+
+                    RadioTextButton(
+                        text = "Inactive",
+                        selected = activeFilter == RocketsViewModel.RocketActiveFilter.INACTIVE,
+                        onSelect = { setActiveFilter(RocketsViewModel.RocketActiveFilter.INACTIVE) }
+                    )
+                }
+            }
+        }
+
         item {
             Spacer(modifier = Modifier.padding(3.dp))
         }
@@ -56,8 +103,13 @@ fun RocketsScreen(
 
 @Preview(showBackground = true)
 @Composable
-private fun RocketsScreenPreview() {
+fun RocketsScreenPreview() {
     SpaceXAppTheme {
-        RocketsScreen(rockets = mockRockets, onRocketClick = {})
+        RocketsScreen(
+            rockets = mockRockets,
+            activeFilter = RocketsViewModel.RocketActiveFilter.ALL,
+            setActiveFilter = {},
+            onRocketClick = {}
+        )
     }
 }

@@ -27,7 +27,8 @@ fun CompanyInfoScreen(
     ) {
         Text(
             text = company.summary,
-            style = MaterialTheme.typography.body1
+            style = MaterialTheme.typography.body1,
+            color = MaterialTheme.colors.onBackground
         )
 
         val infoColumnsModifier = remember {

@@ -17,12 +17,14 @@ fun InfoColumn(
         Text(
             text = label,
             style = MaterialTheme.typography.subtitle1,
+            color = MaterialTheme.colors.onBackground,
             fontWeight = FontWeight.Bold
         )
 
         Text(
             text = text,
-            style = MaterialTheme.typography.body1
+            style = MaterialTheme.typography.body1,
+            color = MaterialTheme.colors.onBackground
         )
     }
 }

@@ -41,6 +41,7 @@ fun RocketCard(
                 rocket.name,
                 style = MaterialTheme.typography.h5,
                 fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colors.onBackground,
                 modifier = Modifier
                     .padding(horizontal = 12.dp)
                     .padding(top = 12.dp)
@@ -49,6 +50,7 @@ fun RocketCard(
             Text(
                 rocket.description,
                 style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.onBackground,
                 modifier = Modifier
                     .padding(12.dp)
             )

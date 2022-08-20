@@ -1,23 +1,21 @@
 package com.github.janruz.spacexapp.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.Colors
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = Color.Black,
+    primaryVariant = Color.Black,
+    secondary = Red
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = Color.White,
+    primaryVariant = Color.White,
+    secondary = Red
 
     /* Other default colors to override
     background = Color.White,
@@ -39,10 +37,6 @@ val Colors.activeGreen: Color get() {
 
 val Colors.inactiveRed: Color get() {
     return Red
-}
-
-val Colors.highlight: Color get() {
-    return Red.copy(alpha = 0.7f)
 }
 
 @Composable

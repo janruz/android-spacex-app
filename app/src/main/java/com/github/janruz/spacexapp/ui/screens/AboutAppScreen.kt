@@ -16,6 +16,7 @@ fun AboutAppScreen() {
     Text(
         text = stringResource(id = R.string.about_app_information),
         style = MaterialTheme.typography.body1,
+        color = MaterialTheme.colors.onBackground,
         textAlign = TextAlign.Center,
         modifier = Modifier
             .padding(16.dp)
