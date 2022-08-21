@@ -6,11 +6,6 @@ import java.io.IOException
 import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 
-interface FileCacheStorage<T> {
-    fun get(fileName: String): Result<T?>
-    fun save(data: T, fileName: String): Result<Unit>
-}
-
 class JsonFileCacheStorage<T> @Inject constructor(
     private val context: Context,
     private val jsonAdapter: JsonAdapter<T>

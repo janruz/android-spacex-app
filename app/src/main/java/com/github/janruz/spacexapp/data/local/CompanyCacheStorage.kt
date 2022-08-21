@@ -7,20 +7,3 @@ interface CompanyCacheStorage {
     fun getCompanyInfo(): Result<Company?>
     fun saveCompanyInfo(company: Company): Result<Unit>
 }
-
-class CompanyCacheStorageImpl @Inject constructor(
-    private val fileCacheStorage: FileCacheStorage<Company>
-): CompanyCacheStorage {
-
-    override fun getCompanyInfo(): Result<Company?> {
-        return fileCacheStorage.get(fileName = CACHE_FILE_NAME)
-    }
-
-    override fun saveCompanyInfo(company: Company): Result<Unit> {
-        return fileCacheStorage.save(company, fileName = CACHE_FILE_NAME)
-    }
-
-    companion object {
-        private const val CACHE_FILE_NAME = "company-cache.json"
-    }
-}

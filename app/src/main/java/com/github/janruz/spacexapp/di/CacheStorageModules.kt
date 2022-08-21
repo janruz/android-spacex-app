@@ -19,21 +19,21 @@ abstract class CacheStorageBindingsModule {
 
     @Binds
     abstract fun bindRocketsCacheStorage(
-        rocketsCacheStorageImpl: RocketsCacheStorageImpl
+        rocketsCacheStorageImpl: RocketsFileCacheStorage
     ): RocketsCacheStorage
 
     @Binds
     abstract fun bindCompanyCacheStorage(
-        companyCacheStorageImpl: CompanyCacheStorageImpl
+        companyCacheStorageImpl: CompanyFileCacheStorage
     ): CompanyCacheStorage
 
     @Binds
-    abstract fun bindRocketsFileStorage(
+    abstract fun bindFileStorageForListOfRockets(
         jsonFileStorageForRockets: JsonFileCacheStorage<List<Rocket>>
     ): FileCacheStorage<List<Rocket>>
 
     @Binds
-    abstract fun bindCompanyFileStorage(
+    abstract fun bindFileStorageForCompany(
         jsonFileStorageForRockets: JsonFileCacheStorage<Company>
     ): FileCacheStorage<Company>
 }
