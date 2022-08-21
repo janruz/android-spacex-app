@@ -16,6 +16,6 @@ class CompanyFileCacheStorage @Inject constructor(
     }
 
     companion object {
-        private const val CACHE_FILE_NAME = "company-cache.json"
+        private const val CACHE_FILE_NAME = "company-cache"
     }
 }

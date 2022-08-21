@@ -16,6 +16,6 @@ class RocketsFileCacheStorage @Inject constructor(
     }
 
     companion object {
-        private const val CACHE_FILE_NAME = "rockets-cache.json"
+        private const val CACHE_FILE_NAME = "rockets-cache"
     }
 }

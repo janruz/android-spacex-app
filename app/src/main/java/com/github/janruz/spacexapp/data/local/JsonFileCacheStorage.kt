@@ -12,8 +12,12 @@ class JsonFileCacheStorage<T> @Inject constructor(
 ): FileCacheStorage<T> {
 
     override fun get(fileName: String): Result<T?> {
+        if(fileName.isEmpty()) {
+            throw IllegalArgumentException("File name is empty.")
+        }
+
         val files = context.filesDir.listFiles()
-        val bytes = files?.singleOrNull { it.name == fileName }?.readBytes()
+        val bytes = files?.singleOrNull { it.name == "$fileName.json" }?.readBytes()
 
         return Result.success(
             if (bytes == null) {
@@ -26,8 +30,12 @@ class JsonFileCacheStorage<T> @Inject constructor(
     }
 
     override fun save(data: T, fileName: String): Result<Unit> {
+        if(fileName.isEmpty()) {
+            throw IllegalArgumentException("File name is empty.")
+        }
+
         return try {
-            context.openFileOutput(fileName, Context.MODE_PRIVATE).use { outputStream ->
+            context.openFileOutput("$fileName.json", Context.MODE_PRIVATE).use { outputStream ->
                 outputStream.write(jsonAdapter.toJson(data).toByteArray())
             }
             Result.success(Unit)
