@@ -7,7 +7,7 @@ import com.github.janruz.spacexapp.ui.components.ErrorIndicator
 import com.github.janruz.spacexapp.ui.components.LoadingIndicator
 import com.github.janruz.spacexapp.ui.components.rockets.RocketsList
 import com.github.janruz.spacexapp.ui.components.rockets.RocketsListState
-import com.github.janruz.spacexapp.viewmodels.Status
+import com.github.janruz.spacexapp.utilities.Status
 
 @Composable
 fun RocketsScreen(

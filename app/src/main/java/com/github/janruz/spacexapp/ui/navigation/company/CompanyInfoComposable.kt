@@ -14,10 +14,13 @@ fun NavGraphBuilder.companyInfoComposable() {
         route = NavConstants.COMPANY_INFO_SCREEN
     ) {
         val companyViewModel = hiltViewModel<CompanyViewModel>()
-        val company by companyViewModel.company.collectAsState()
 
-        company?.let { safeCompany ->
-            CompanyInfoScreen(safeCompany)
-        }
+        CompanyInfoScreen(
+            companyStatus = companyViewModel.companyStatus.value,
+            company = companyViewModel.company.value,
+            onTryAgain = {
+                companyViewModel.getCompany()
+            }
+        )
     }
 }

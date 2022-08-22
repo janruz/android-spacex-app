@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.data.repositories.RocketsRepository
+import com.github.janruz.spacexapp.utilities.Status
+import com.github.janruz.spacexapp.utilities.ifSuccessGetOrNull
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -67,19 +69,6 @@ class RocketsViewModel @Inject constructor(
             }
         }
     }
-}
-
-fun<T> Result<T?>.ifSuccessGetOrNull(action: (T) -> Unit): Result<T?> {
-    if(isSuccess) {
-        getOrNull()?.let {
-            action(it)
-        }
-    }
-    return this
-}
-
-enum class Status {
-    SUCCESS, FAILURE, LOADING, NONE
 }
 
 enum class RocketActiveFilter {
