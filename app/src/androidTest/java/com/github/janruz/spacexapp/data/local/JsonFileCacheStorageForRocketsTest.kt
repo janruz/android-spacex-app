@@ -15,6 +15,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.io.FileNotFoundException
 import java.nio.charset.StandardCharsets
 
 @RunWith(AndroidJUnit4::class)
@@ -33,7 +34,7 @@ class JsonFileCacheStorageForRocketsTest {
         val moshi = Moshi.Builder().build()
         jsonAdapter = moshi.adapter(type)
 
-        jsonCacheForRockets = JsonFileCacheStorage<List<Rocket>>(context, jsonAdapter)
+        jsonCacheForRockets = JsonFileCacheStorage(context, jsonAdapter)
     }
 
     @After
@@ -46,18 +47,18 @@ class JsonFileCacheStorageForRocketsTest {
     }
 
     @Test
-    fun getFromNotExistingFile_shouldReturnSuccessOfNull() {
+    fun getFromNotExistingFile_shouldReturnFailureOfFileNotFound() {
         val result = jsonCacheForRockets.get(fileName = "file_that_does_not_exist")
-        assertThat(result.isSuccess).isTrue()
-        assertThat(result.getOrNull()).isNull()
+        assertThat(result.isFailure).isTrue()
+        assertThat(result.exceptionOrNull()).isInstanceOf(FileNotFoundException::class.java)
     }
 
     @Test
-    fun getWithFileNameBlank_shouldThrowIllegalArgumentException() {
-        try {
-            jsonCacheForRockets.get(fileName = "")
-            assertWithMessage("IllegalArgumentException not thrown.").fail()
-        } catch (e: IllegalArgumentException) { }
+    fun getWithFileNameBlank_shouldReturnFailureOfIllegalArgumentException() {
+        val result = jsonCacheForRockets.get(fileName = "")
+
+        assertThat(result.isFailure).isTrue()
+        assertThat(result.exceptionOrNull()).isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @Test
@@ -80,11 +81,11 @@ class JsonFileCacheStorageForRocketsTest {
     }
 
     @Test
-    fun saveListOfRocketsButLeaveFileNameEmpty_shouldThrowIllegalArgumentException() {
-        try {
-            jsonCacheForRockets.save(data = newListOfMockRockets(variant = 0), fileName = "")
-            assertWithMessage("IllegalArgumentException not thrown.").fail()
-        } catch(e: IllegalArgumentException) {}
+    fun saveListOfRocketsButLeaveFileNameEmpty_shouldReturnFailureOfIllegalArgumentException() {
+        val result = jsonCacheForRockets.save(data = newListOfMockRockets(variant = 0), fileName = "")
+
+        assertThat(result.isFailure).isTrue()
+        assertThat(result.exceptionOrNull()).isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @Test

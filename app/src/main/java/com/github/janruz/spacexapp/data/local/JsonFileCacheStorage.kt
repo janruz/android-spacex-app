@@ -34,6 +34,7 @@ class JsonFileCacheStorage<T> @Inject constructor(
     }
 
     override fun save(data: T, fileName: String): Result<Unit> = runCatchingExceptions(
+        IllegalArgumentException::class,
         IOException::class
     ) {
         if(fileName.isEmpty()) {
