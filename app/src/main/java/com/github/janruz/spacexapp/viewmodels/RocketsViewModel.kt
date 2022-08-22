@@ -8,13 +8,18 @@ import androidx.lifecycle.viewModelScope
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.data.repositories.RocketsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RocketsViewModel @Inject constructor(
-    rocketsRepository: RocketsRepository
+    private val rocketsRepository: RocketsRepository
 ): ViewModel() {
+
+    private val _rocketsStatus = mutableStateOf(Status.NONE)
+    val rocketsStatus = _rocketsStatus as State<Status>
 
     val rockets = derivedStateOf {
         _allRockets.value
@@ -26,26 +31,55 @@ class RocketsViewModel @Inject constructor(
     val activeFilter = mutableStateOf(RocketActiveFilter.ALL)
     val successRateFilter = mutableStateOf(0U)
 
-    private var _allRockets = mutableStateOf(listOf<Rocket>())
+    private val _allRockets = mutableStateOf(listOf<Rocket>())
     val allRockets = _allRockets as State<List<Rocket>>
 
+    private var getRocketsJob: Job? = null
+
     init {
-        viewModelScope.launch {
-            val savedRocketsResult = rocketsRepository.getRocketsFromCache()
-            if(savedRocketsResult.isSuccess) {
-                savedRocketsResult.getOrNull()?.let {
-                    _allRockets.value = it
-                }
+        getRockets()
+    }
+
+    fun getRockets() {
+        getRocketsJob?.cancel()
+
+        getRocketsJob = viewModelScope.launch {
+
+            if(rocketsStatus.value == Status.FAILURE) {
+                _rocketsStatus.value = Status.LOADING
+                delay(1000)
+            } else {
+                _rocketsStatus.value = Status.LOADING
             }
 
-            val updatedRocketsResult = rocketsRepository.fetchRockets()
-            if(updatedRocketsResult.isSuccess) {
-                updatedRocketsResult.getOrNull()?.let {
-                    _allRockets.value = it
-                }
+            val cacheResult = rocketsRepository.getRocketsFromCache().ifSuccessGetOrNull {
+                _allRockets.value = it
+                _rocketsStatus.value = Status.SUCCESS
+            }
+
+            val apiResult = rocketsRepository.fetchRockets().ifSuccessGetOrNull {
+                _allRockets.value = it
+                _rocketsStatus.value = Status.SUCCESS
+            }
+
+            if(cacheResult.isFailure && apiResult.isFailure) {
+                _rocketsStatus.value = Status.FAILURE
             }
         }
     }
+}
+
+fun<T> Result<T?>.ifSuccessGetOrNull(action: (T) -> Unit): Result<T?> {
+    if(isSuccess) {
+        getOrNull()?.let {
+            action(it)
+        }
+    }
+    return this
+}
+
+enum class Status {
+    SUCCESS, FAILURE, LOADING, NONE
 }
 
 enum class RocketActiveFilter {

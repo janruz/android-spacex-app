@@ -10,7 +10,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.github.janruz.spacexapp.ui.navigation.NavConstants
-import com.github.janruz.spacexapp.ui.screens.RocketDetailScreen
+import com.github.janruz.spacexapp.ui.screens.rockets.RocketDetailScreen
 import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
 
 fun NavGraphBuilder.rocketDetailComposable(

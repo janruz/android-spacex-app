@@ -1,4 +1,4 @@
-package com.github.janruz.spacexapp.ui.screens
+package com.github.janruz.spacexapp.ui.screens.rockets
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.background

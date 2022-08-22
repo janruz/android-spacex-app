@@ -1,4 +1,4 @@
-package com.github.janruz.spacexapp.ui.screens
+package com.github.janruz.spacexapp.ui.screens.about
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme

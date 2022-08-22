@@ -1,4 +1,4 @@
-package com.github.janruz.spacexapp.ui.screens
+package com.github.janruz.spacexapp.ui.components.rockets
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -11,39 +11,33 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.R
-import com.github.janruz.spacexapp.data.mockRockets
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.RadioTextButton
 import com.github.janruz.spacexapp.ui.components.RocketCard
 import com.github.janruz.spacexapp.ui.components.RocketSuccessRateSlider
-import com.github.janruz.spacexapp.ui.theme.SpaceXAppTheme
-import com.github.janruz.spacexapp.ui.theme.border
 import com.github.janruz.spacexapp.viewmodels.RocketActiveFilter
+import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
-fun RocketsScreen(
-    rockets: List<Rocket>,
-    activeFilter: RocketActiveFilter,
-    setActiveFilter: (RocketActiveFilter) -> Unit,
-    successRateFilter: Float,
-    onSuccessRateFilterChanged: (Float) -> Unit,
-    onSuccessRateFilterSelected: (UInt) -> Unit,
-    onRocketClick: (Rocket) -> Unit
+fun RocketsList(
+    state: RocketsListState
 ) {
     var rocketCardsVisible by rememberSaveable { mutableStateOf(false) }
 
-    LaunchedEffect(rockets) {
-        if(!rocketCardsVisible && rockets.isNotEmpty()) {
+    LaunchedEffect(state.rockets) {
+        if(!rocketCardsVisible && state.rockets.isNotEmpty()) {
             delay(500)
             rocketCardsVisible = true
         }
@@ -65,34 +59,34 @@ fun RocketsScreen(
                 Row(Modifier.selectableGroup()) {
                     RadioTextButton(
                         text = stringResource(id = R.string.rocket_filter_activity_all),
-                        selected = activeFilter == RocketActiveFilter.ALL,
-                        onSelect = { setActiveFilter(RocketActiveFilter.ALL) }
+                        selected = state.activeFilter == RocketActiveFilter.ALL,
+                        onSelect = { state.activeFilter = RocketActiveFilter.ALL }
                     )
 
                     RadioTextButton(
                         text = stringResource(id = R.string.rocket_filter_activity_active),
-                        selected = activeFilter == RocketActiveFilter.ACTIVE,
-                        onSelect = { setActiveFilter(RocketActiveFilter.ACTIVE) }
+                        selected = state.activeFilter == RocketActiveFilter.ACTIVE,
+                        onSelect = { state.activeFilter = RocketActiveFilter.ACTIVE }
                     )
 
                     RadioTextButton(
                         text = stringResource(id = R.string.rocket_filter_activity_inactive),
-                        selected = activeFilter == RocketActiveFilter.INACTIVE,
-                        onSelect = { setActiveFilter(RocketActiveFilter.INACTIVE) }
+                        selected = state.activeFilter == RocketActiveFilter.INACTIVE,
+                        onSelect = { state.activeFilter = RocketActiveFilter.INACTIVE }
                     )
                 }
 
                 Text(
-                    text = stringResource(id = R.string.rocket_minimum_success_rate) + ": ${successRateFilter.toInt()} %",
+                    text = stringResource(id = R.string.rocket_minimum_success_rate) + ": ${state.successRateFilterRealtime.toInt()} %",
                     style = MaterialTheme.typography.subtitle1,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colors.onBackground
                 )
 
                 RocketSuccessRateSlider(
-                    successRateFilter,
-                    onSuccessRateFilterChanged,
-                    onSuccessRateFilterSelected
+                    state.successRateFilterRealtime,
+                    onSuccessRateFilterChanged = { state.successRateFilterRealtime = it },
+                    onSuccessRateFilterSelected = { state.onSuccessRateFilterSelected(it) }
                 )
             }
         }
@@ -101,13 +95,13 @@ fun RocketsScreen(
             Spacer(modifier = Modifier.padding(3.dp))
         }
 
-        items(rockets) { rocket ->
+        items(state.rockets) { rocket ->
             AnimatedVisibility(
                 visible = rocketCardsVisible,
                 enter = slideInHorizontally(animationSpec = tween(durationMillis = 400), initialOffsetX = {-it}),
                 exit = slideOutHorizontally()
             ) {
-                RocketCard(rocket, onClick = { onRocketClick(rocket) })
+                RocketCard(rocket, onClick = { state.onRocketClick(rocket) })
             }
         }
 
@@ -117,18 +111,34 @@ fun RocketsScreen(
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun RocketsScreenPreview() {
-    SpaceXAppTheme {
-        RocketsScreen(
-            rockets = mockRockets,
-            activeFilter = RocketActiveFilter.ALL,
-            setActiveFilter = {},
-            successRateFilter = 0f,
-            onSuccessRateFilterChanged = {},
-            onSuccessRateFilterSelected = {},
-            onRocketClick = {}
-        )
+fun rememberRocketsListState(
+    rocketsViewModel: RocketsViewModel,
+    navigateToDetailScreen: (rocketId: String) -> Unit,
+    scope: CoroutineScope = rememberCoroutineScope()
+
+) = remember(rocketsViewModel, scope, navigateToDetailScreen) {
+    RocketsListState(rocketsViewModel, scope, navigateToDetailScreen)
+}
+
+class RocketsListState(
+    private val viewModel: RocketsViewModel,
+    private val scope: CoroutineScope,
+    private val navigateToDetailScreen: (rocketId: String) -> Unit
+) {
+    val rockets by viewModel.rockets
+    var activeFilter by viewModel.activeFilter
+
+    var successRateFilterRealtime by mutableStateOf(viewModel.successRateFilter.value.toFloat())
+
+    fun onSuccessRateFilterSelected(value: UInt) {
+        viewModel.successRateFilter.value = value
+    }
+
+    fun onRocketClick(rocket: Rocket) {
+        scope.launch {
+            delay(200)
+            navigateToDetailScreen(rocket.id)
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.github.janruz.spacexapp.ui.screens
+package com.github.janruz.spacexapp.ui.screens.company
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState

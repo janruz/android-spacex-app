@@ -4,7 +4,7 @@ import com.github.janruz.spacexapp.data.local.CompanyCacheStorage
 import com.github.janruz.spacexapp.data.models.Company
 import com.github.janruz.spacexapp.data.models.asCompany
 import com.github.janruz.spacexapp.data.networking.CompanyWebService
-import com.github.janruz.spacexapp.data.safeApiCall
+import com.github.janruz.spacexapp.utilities.runCatchingNetworkExceptions
 import javax.inject.Inject
 
 interface CompanyRepository {
@@ -21,7 +21,7 @@ class CompanyRepositoryImpl @Inject constructor(
         return companyCacheStorage.getCompanyInfo()
     }
 
-    override suspend fun fetchCompany(): Result<Company> = safeApiCall {
+    override suspend fun fetchCompany(): Result<Company> = runCatchingNetworkExceptions {
         val company = companyWebService.getCompanyInfo().asCompany
         companyCacheStorage.saveCompanyInfo(company)
         company

@@ -4,7 +4,7 @@ import com.github.janruz.spacexapp.data.local.RocketsCacheStorage
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.data.models.asRockets
 import com.github.janruz.spacexapp.data.networking.RocketsWebService
-import com.github.janruz.spacexapp.data.safeApiCall
+import com.github.janruz.spacexapp.utilities.runCatchingNetworkExceptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -23,7 +23,7 @@ class RocketsRepositoryImpl @Inject constructor(
         rocketsLocalStorage.getAll()
     }
 
-    override suspend fun fetchRockets(): Result<List<Rocket>> = safeApiCall {
+    override suspend fun fetchRockets(): Result<List<Rocket>> = runCatchingNetworkExceptions {
         val rockets = rocketsWebService.getAllRockets().asRockets
         rocketsLocalStorage.save(rockets)
         rockets
