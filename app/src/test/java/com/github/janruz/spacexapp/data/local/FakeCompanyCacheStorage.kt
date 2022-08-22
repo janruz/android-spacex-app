@@ -1,37 +1,37 @@
 package com.github.janruz.spacexapp.data.local
 
-import com.github.janruz.spacexapp.data.models.Rocket
+import com.github.janruz.spacexapp.data.models.Company
 import java.io.FileNotFoundException
 
-class FakeRocketsCacheStorage: FileCacheStorage<List<Rocket>> {
+class FakeCompanyCacheStorage: FileCacheStorage<Company> {
 
     var passedFileName: String? = null
         private set
 
-    var savedRockets: List<Rocket>? = null
+    var savedCompany: Company? = null
         private set
 
     var exception: Throwable? = null
 
-    override fun get(fileName: String): Result<List<Rocket>?> {
+    override fun get(fileName: String): Result<Company?> {
         exception?.let {
             return Result.failure(it)
         }
 
-        if(savedRockets == null) {
+        if(savedCompany == null) {
             return Result.failure(FileNotFoundException())
         }
 
         passedFileName = fileName
-        return Result.success(savedRockets)
+        return Result.success(savedCompany)
     }
 
-    override fun save(data: List<Rocket>, fileName: String): Result<Unit> {
+    override fun save(data: Company, fileName: String): Result<Unit> {
         exception?.let {
             return Result.failure(it)
         }
 
-        savedRockets = data
+        savedCompany = data
         passedFileName = fileName
         return Result.success(Unit)
     }

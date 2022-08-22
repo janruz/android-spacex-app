@@ -4,6 +4,7 @@ import com.github.janruz.spacexapp.data.models.Rocket
 import com.google.common.truth.Truth.assertThat
 import org.junit.Before
 import org.junit.Test
+import java.io.FileNotFoundException
 import java.io.IOException
 
 class RocketsFileCacheStorageTest {
@@ -18,28 +19,25 @@ class RocketsFileCacheStorageTest {
     }
 
     @Test
-    fun `empty cache, should return success of null`() {
+    fun `empty cache, should return failure of file not found`() {
         val result = instance.getAll()
 
-        assertThat(result.isSuccess).isTrue()
-        assertThat(result.getOrNull()).isNull()
+        assertThat(result.isFailure).isTrue()
+        assertThat(result.exceptionOrNull()).isInstanceOf(FileNotFoundException::class.java)
     }
 
     @Test
-    fun `save rockets, should return success of the same list of rockets`() {
+    fun `save rockets and get them back, should return success of the same list of rockets`() {
         val saveResult = instance.save(newListOfMockRockets(variant = 0))
         assertThat(saveResult.isSuccess).isTrue()
 
         val getResult = instance.getAll()
         assertThat(getResult.isSuccess).isTrue()
-        assertThat(getResult.getOrNull()).isNotNull()
-
-        val savedRockets = getResult.getOrNull()!!
-        assertThat(savedRockets).isEqualTo(newListOfMockRockets(variant = 0))
+        assertThat(getResult.getOrNull()).isEqualTo(newListOfMockRockets(variant = 0))
     }
 
     @Test
-    fun `save rockets and then overwrite them with  a new list of rockets, should return success of the new list of rockets`() {
+    fun `save rockets and then save a new list of rockets, should return success of the new list of rockets`() {
         val saveResult0 = instance.save(newListOfMockRockets(variant = 0))
         assertThat(saveResult0.isSuccess).isTrue()
 
@@ -48,9 +46,9 @@ class RocketsFileCacheStorageTest {
 
         val getResult = instance.getAll()
         assertThat(getResult.isSuccess).isTrue()
-        assertThat(getResult.getOrNull()).isNotNull()
 
-        val savedRockets = getResult.getOrNull()!!
+        val savedRockets = getResult.getOrNull()
+        assertThat(savedRockets).isNotNull()
         assertThat(savedRockets).isNotEqualTo(newListOfMockRockets(variant = 0))
         assertThat(savedRockets).isEqualTo(newListOfMockRockets(variant = 1))
     }
@@ -77,7 +75,7 @@ class RocketsFileCacheStorageTest {
     }
 
     @Test
-    fun `save rockets and cache storage returns error, should return it as well`() {
+    fun `save rockets and cache storage returns failure, should return it as well`() {
         val message = "Something has gone wrong."
         fakeCache.exception = IOException(message)
 
@@ -87,14 +85,12 @@ class RocketsFileCacheStorageTest {
 
         val exception = result.exceptionOrNull()
 
-        assertThat(exception).isNotNull()
-        assertThat(exception!!).isInstanceOf(IOException::class.java)
-
-        assertThat(exception.message).isEqualTo(message)
+        assertThat(exception).isInstanceOf(IOException::class.java)
+        assertThat(exception!!.message).isEqualTo(message)
     }
 
     @Test
-    fun `get rockets and cache storage returns error, should return it as well`() {
+    fun `get rockets and cache storage returns failure, should return it as well`() {
         val message = "Something has gone wrong."
         fakeCache.exception = IOException(message)
 
@@ -104,9 +100,8 @@ class RocketsFileCacheStorageTest {
 
         val exception = result.exceptionOrNull()
 
-        assertThat(exception).isNotNull()
-        assertThat(exception!!).isInstanceOf(IOException::class.java)
-        assertThat(exception.message).isEqualTo(message)
+        assertThat(exception).isInstanceOf(IOException::class.java)
+        assertThat(exception!!.message).isEqualTo(message)
     }
 
     private fun newListOfMockRockets(variant: Int): List<Rocket> {
