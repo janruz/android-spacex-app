@@ -8,9 +8,9 @@ import com.github.janruz.spacexapp.data.models.Company
 import com.github.janruz.spacexapp.data.repositories.CompanyRepository
 import com.github.janruz.spacexapp.utilities.Status
 import com.github.janruz.spacexapp.utilities.ifSuccessGetOrNull
+import com.github.janruz.spacexapp.utilities.loading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -36,12 +36,7 @@ class CompanyViewModel @Inject constructor(
 
         getCompanyJob = viewModelScope.launch {
 
-            if(companyStatus.value == Status.FAILURE) {
-                _companyStatus.value = Status.LOADING
-                delay(1000)
-            } else {
-                _companyStatus.value = Status.LOADING
-            }
+            _companyStatus.loading()
 
             val cacheResult = companyRepository.getCompanyFromCache().ifSuccessGetOrNull {
                 _company.value = it

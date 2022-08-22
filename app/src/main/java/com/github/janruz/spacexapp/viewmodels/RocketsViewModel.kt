@@ -9,9 +9,9 @@ import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.data.repositories.RocketsRepository
 import com.github.janruz.spacexapp.utilities.Status
 import com.github.janruz.spacexapp.utilities.ifSuccessGetOrNull
+import com.github.janruz.spacexapp.utilities.loading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -47,12 +47,7 @@ class RocketsViewModel @Inject constructor(
 
         getRocketsJob = viewModelScope.launch {
 
-            if(rocketsStatus.value == Status.FAILURE) {
-                _rocketsStatus.value = Status.LOADING
-                delay(1000)
-            } else {
-                _rocketsStatus.value = Status.LOADING
-            }
+            _rocketsStatus.loading()
 
             val cacheResult = rocketsRepository.getRocketsFromCache().ifSuccessGetOrNull {
                 _allRockets.value = it
