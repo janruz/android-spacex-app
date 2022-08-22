@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.models.Rocket
+import com.github.janruz.spacexapp.ui.components.NoData
 import com.github.janruz.spacexapp.ui.components.RadioTextButton
 import com.github.janruz.spacexapp.ui.components.RocketCard
 import com.github.janruz.spacexapp.ui.components.RocketSuccessRateSlider
@@ -91,22 +92,36 @@ fun RocketsList(
             }
         }
 
-        item {
-            Spacer(modifier = Modifier.padding(3.dp))
-        }
-
-        items(state.rockets) { rocket ->
-            AnimatedVisibility(
-                visible = rocketCardsVisible,
-                enter = slideInHorizontally(animationSpec = tween(durationMillis = 400), initialOffsetX = {-it}),
-                exit = slideOutHorizontally()
-            ) {
-                RocketCard(rocket, onClick = { state.onRocketClick(rocket) })
+        when {
+            state.isAllRocketsEmpty -> {
+                item {
+                    NoData(message = stringResource(id = R.string.no_rockets))
+                }
             }
-        }
+            state.rockets.isEmpty() -> {
+                item {
+                    NoData(message = stringResource(id = R.string.no_rockets_matching_given_filters))
+                }
+            }
+            state.rockets.isNotEmpty() -> {
+                item {
+                    Spacer(modifier = Modifier.padding(3.dp))
+                }
 
-        item {
-            Spacer(modifier = Modifier.padding(3.dp))
+                items(state.rockets) { rocket ->
+                    AnimatedVisibility(
+                        visible = rocketCardsVisible,
+                        enter = slideInHorizontally(animationSpec = tween(durationMillis = 400), initialOffsetX = {-it}),
+                        exit = slideOutHorizontally()
+                    ) {
+                        RocketCard(rocket, onClick = { state.onRocketClick(rocket) })
+                    }
+                }
+
+                item {
+                    Spacer(modifier = Modifier.padding(3.dp))
+                }
+            }
         }
     }
 }
@@ -127,6 +142,10 @@ class RocketsListState(
     private val navigateToDetailScreen: (rocketId: String) -> Unit
 ) {
     val rockets by viewModel.rockets
+    val isAllRocketsEmpty by derivedStateOf {
+        viewModel.allRockets.value.isEmpty()
+    }
+
     var activeFilter by viewModel.activeFilter
 
     var successRateFilterRealtime by mutableStateOf(viewModel.successRateFilter.value.toFloat())
