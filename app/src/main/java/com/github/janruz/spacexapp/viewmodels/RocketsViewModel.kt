@@ -5,6 +5,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.data.repositories.RocketsRepository
 import com.github.janruz.spacexapp.utilities.Status
@@ -12,6 +13,8 @@ import com.github.janruz.spacexapp.utilities.ifSuccessGetOrNull
 import com.github.janruz.spacexapp.utilities.loading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,6 +25,9 @@ class RocketsViewModel @Inject constructor(
 
     private val _rocketsStatus = mutableStateOf(Status.NONE)
     val rocketsStatus = _rocketsStatus as State<Status>
+
+    private val _messageId = MutableSharedFlow<Int>()
+    val messageId = _messageId.asSharedFlow()
 
     val rockets = derivedStateOf {
         _allRockets.value
@@ -59,8 +65,13 @@ class RocketsViewModel @Inject constructor(
                 _rocketsStatus.value = Status.SUCCESS
             }
 
-            if(cacheResult.isFailure && apiResult.isFailure) {
-                _rocketsStatus.value = Status.FAILURE
+            when {
+                cacheResult.isFailure && apiResult.isFailure -> {
+                    _rocketsStatus.value = Status.FAILURE
+                }
+                cacheResult.isSuccess && apiResult.isFailure -> {
+                    _messageId.emit(R.string.error_fetching_api_showing_data_from_cache)
+                }
             }
         }
     }
