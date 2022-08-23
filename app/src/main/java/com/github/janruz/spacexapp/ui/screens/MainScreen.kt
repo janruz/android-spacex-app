@@ -3,6 +3,7 @@ package com.github.janruz.spacexapp.ui.screens
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.github.janruz.spacexapp.ui.components.AnimatedAppBar
@@ -23,9 +24,9 @@ fun MainScreen(
         Navigator(navController)
     }
 
-    var appBarVisible by remember { mutableStateOf(true) }
+    var appBarVisible by rememberSaveable { mutableStateOf(true) }
 
-    var activeDrawerItem by remember { mutableStateOf(NavConstants.DRAWER_ITEMS.first()) }
+    var activeDrawerItem by rememberSaveable { mutableStateOf(NavConstants.DRAWER_ITEMS.first()) }
 
     LaunchedEffect(Unit) {
         navController.addOnDestinationChangedListener { _, destination, _ ->

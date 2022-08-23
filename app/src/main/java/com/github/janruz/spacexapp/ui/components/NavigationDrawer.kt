@@ -1,5 +1,6 @@
 package com.github.janruz.spacexapp.ui.components
 
+import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -21,12 +22,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.theme.border
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class NavDrawerItem(
     val id: String,
     @StringRes val titleId: Int,
     @DrawableRes val iconId: Int
-)
+) : Parcelable
 
 @Composable
 fun NavDrawerHeader() {
