@@ -1,4 +1,4 @@
-package com.github.janruz.spacexapp.ui.components
+package com.github.janruz.spacexapp.ui.components.rockets
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Slider

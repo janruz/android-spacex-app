@@ -1,4 +1,4 @@
-package com.github.janruz.spacexapp.ui.components
+package com.github.janruz.spacexapp.ui.components.rockets
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -9,9 +9,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.data.models.Rocket
+import com.github.janruz.spacexapp.ui.components.AspectRatioImage
 import com.github.janruz.spacexapp.ui.theme.border
 
 @Composable
@@ -22,12 +24,6 @@ fun RocketCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(
-                top = 6.dp,
-                start = 12.dp,
-                end = 12.dp,
-                bottom = 6.dp
-            )
             .clickable { onClick() },
         elevation = 3.dp,
         border = BorderStroke(width = 1.dp, MaterialTheme.colors.border)
@@ -55,6 +51,8 @@ fun RocketCard(
                 style = MaterialTheme.typography.h5,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colors.onBackground,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .padding(horizontal = 12.dp)
                     .padding(top = 12.dp)
@@ -64,6 +62,8 @@ fun RocketCard(
                 rocket.description,
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.onBackground,
+                maxLines = 6,
+                overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .padding(12.dp)
             )

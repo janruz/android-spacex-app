@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.AspectRatioImage
-import com.github.janruz.spacexapp.ui.components.RocketActiveLabel
+import com.github.janruz.spacexapp.ui.components.rockets.RocketActiveLabel
 import kotlinx.coroutines.delay
 
 @Composable

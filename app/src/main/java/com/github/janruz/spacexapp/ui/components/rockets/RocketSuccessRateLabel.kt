@@ -1,10 +1,11 @@
-package com.github.janruz.spacexapp.ui.components
+package com.github.janruz.spacexapp.ui.components.rockets
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import com.github.janruz.spacexapp.R
+import com.github.janruz.spacexapp.ui.components.IconLabel
 import com.github.janruz.spacexapp.ui.theme.negative
 import com.github.janruz.spacexapp.ui.theme.neutral
 import com.github.janruz.spacexapp.ui.theme.positive

@@ -4,12 +4,8 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -23,8 +19,6 @@ import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.NoData
 import com.github.janruz.spacexapp.ui.components.RadioTextButton
-import com.github.janruz.spacexapp.ui.components.RocketCard
-import com.github.janruz.spacexapp.ui.components.RocketSuccessRateSlider
 import com.github.janruz.spacexapp.viewmodels.RocketActiveFilter
 import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -44,12 +38,19 @@ fun RocketsList(
         }
     }
 
-    LazyColumn {
-        item {
-            Column(
-                modifier = Modifier
-                    .padding(top = 16.dp, start = 12.dp, end = 12.dp)
-            ) {
+    LazyVerticalGrid(
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        contentPadding = PaddingValues(12.dp),
+        columns = GridCells.Adaptive(minSize = 260.dp),
+        modifier = Modifier.fillMaxSize()
+    ) {
+        item(
+            span = {
+                GridItemSpan(maxLineSpan)
+            }
+        ) {
+            Column {
                 Text(
                     text = stringResource(id = R.string.rocket_activity),
                     style = MaterialTheme.typography.subtitle1,
@@ -94,19 +95,24 @@ fun RocketsList(
 
         when {
             state.isAllRocketsEmpty -> {
-                item {
+                item(
+                    span = {
+                        GridItemSpan(maxLineSpan)
+                    }
+                ) {
                     NoData(message = stringResource(id = R.string.no_rockets))
                 }
             }
             state.rockets.isEmpty() -> {
-                item {
+                item(
+                    span = {
+                        GridItemSpan(maxLineSpan)
+                    }
+                ) {
                     NoData(message = stringResource(id = R.string.no_rockets_matching_given_filters))
                 }
             }
             state.rockets.isNotEmpty() -> {
-                item {
-                    Spacer(modifier = Modifier.padding(3.dp))
-                }
 
                 items(state.rockets) { rocket ->
                     AnimatedVisibility(
@@ -116,10 +122,6 @@ fun RocketsList(
                     ) {
                         RocketCard(rocket, onClick = { state.onRocketClick(rocket) })
                     }
-                }
-
-                item {
-                    Spacer(modifier = Modifier.padding(3.dp))
                 }
             }
         }
