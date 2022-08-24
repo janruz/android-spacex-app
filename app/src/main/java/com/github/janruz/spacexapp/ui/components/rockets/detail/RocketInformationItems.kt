@@ -17,6 +17,7 @@ import com.github.janruz.spacexapp.ui.components.rockets.RocketSuccessRateLabel
 import com.github.janruz.spacexapp.ui.theme.negative
 import com.github.janruz.spacexapp.ui.theme.positive
 import com.github.janruz.spacexapp.utilities.formatAsDate
+import com.github.janruz.spacexapp.utilities.formatAsNumber
 import com.github.janruz.spacexapp.utilities.openWikipedia
 
 fun LazyListScope.rocketInformationItems(
@@ -69,7 +70,7 @@ fun LazyListScope.rocketInformationItems(
 
             InfoColumn(
                 label = stringResource(id = R.string.mass),
-                text = stringResource(id = R.string.mass_kg_format, rocket.mass),
+                text = stringResource(id = R.string.mass_kg_format, rocket.mass.formatAsNumber()),
                 modifier = Modifier.weight(1f)
             )
         }
@@ -82,13 +83,13 @@ fun LazyListScope.rocketInformationItems(
 
             InfoColumn(
                 label = stringResource(id = R.string.height),
-                text = stringResource(id = R.string.dimension_meters_format, rocket.height),
+                text = stringResource(id = R.string.dimension_meters_format, rocket.height.formatAsNumber()),
                 modifier = Modifier.weight(1f)
             )
 
             InfoColumn(
                 label = stringResource(id = R.string.diameter),
-                text = stringResource(id = R.string.dimension_meters_format, rocket.diameter),
+                text = stringResource(id = R.string.dimension_meters_format, rocket.diameter.formatAsNumber()),
                 modifier = Modifier.weight(1f)
             )
         }

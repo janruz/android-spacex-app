@@ -14,16 +14,18 @@ import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.models.Company
 import com.github.janruz.spacexapp.ui.components.InfoColumn
+import com.github.janruz.spacexapp.utilities.formatAsCurrency
+import com.github.janruz.spacexapp.utilities.formatAsNumber
 
 @Composable
 fun CompanyInfo(
     company: Company
 ) {
-    val scrollState = rememberScrollState()
+
     Column(
         verticalArrangement = Arrangement.spacedBy(24.dp),
         modifier = Modifier
-            .verticalScroll(scrollState, enabled = true)
+            .verticalScroll(rememberScrollState(), enabled = true)
             .padding(16.dp)
     ) {
         Text(
@@ -81,13 +83,13 @@ fun CompanyInfo(
 
             InfoColumn(
                 label = stringResource(id = R.string.employees),
-                text = company.employees.toString(),
+                text = company.employees.formatAsNumber(),
                 infoColumnsModifier
             )
 
             InfoColumn(
                 label = stringResource(id = R.string.valuation),
-                text = company.valuation.toString(),
+                text = company.valuation.formatAsCurrency(),
                 infoColumnsModifier
             )
         }

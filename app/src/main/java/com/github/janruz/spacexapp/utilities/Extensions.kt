@@ -9,6 +9,9 @@ import androidx.navigation.NavDestination
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.navigation.NavConstants.ROCKET_DETAIL_SCREEN_PREFIX
 import kotlinx.coroutines.delay
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -44,6 +47,27 @@ fun String.formatAsDate(context: Context): String {
             .getMediumDateFormat(context)
             .format(it)
     } ?: this
+}
+
+fun Long.formatAsCurrency(currency: Currency = Currency.getInstance(Locale.US)): String {
+    return NumberFormat
+        .getCurrencyInstance(Locale.getDefault())
+        .apply {
+            this.currency = currency
+        }
+        .format(this)
+}
+
+fun Number.formatAsNumber(): String {
+    return NumberFormat
+        .getNumberInstance(Locale.getDefault())
+        .format(this)
+}
+
+fun Float.formatAsPercent(alreadyInPercent: Boolean): String {
+    return NumberFormat
+        .getPercentInstance(Locale.getDefault())
+        .format(if(alreadyInPercent) this / 100f else this)
 }
 
 fun Rocket.openWikipedia(context: Context) {

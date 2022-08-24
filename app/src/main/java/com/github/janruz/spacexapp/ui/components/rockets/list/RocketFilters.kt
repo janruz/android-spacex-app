@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.components.RadioTextButton
+import com.github.janruz.spacexapp.utilities.formatAsPercent
 import com.github.janruz.spacexapp.viewmodels.RocketActiveFilter
 
 @Composable
@@ -50,7 +51,10 @@ fun RocketFilters(
         }
 
         Text(
-            text = stringResource(id = R.string.rocket_minimum_success_rate) + ": ${state.successRateFilterRealtime.toInt()} %",
+            text = stringResource(
+                id = R.string.rocket_minimum_success_rate,
+                state.successRateFilterRealtime.formatAsPercent(alreadyInPercent = true)
+            ),
             style = MaterialTheme.typography.subtitle1,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colors.onBackground

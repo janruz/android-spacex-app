@@ -9,6 +9,7 @@ import com.github.janruz.spacexapp.ui.components.IconLabel
 import com.github.janruz.spacexapp.ui.theme.negative
 import com.github.janruz.spacexapp.ui.theme.neutral
 import com.github.janruz.spacexapp.ui.theme.positive
+import com.github.janruz.spacexapp.utilities.formatAsPercent
 
 @Composable
 fun RocketSuccessRateLabel(
@@ -16,7 +17,7 @@ fun RocketSuccessRateLabel(
     modifier: Modifier = Modifier
 ) {
     IconLabel(
-        text = "$successRate %",
+        text = successRate.toFloat().formatAsPercent(alreadyInPercent = true),
         iconPainter = painterResource(id = R.drawable.ic_rocket_launch),
         color = when(successRate) {
             in 99U..100U -> MaterialTheme.colors.positive
