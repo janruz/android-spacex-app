@@ -14,7 +14,6 @@ import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.NoData
-import com.github.janruz.spacexapp.ui.components.animation.SlideInFromLeft
 import com.github.janruz.spacexapp.ui.components.maxLineSpanItem
 import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -59,9 +58,7 @@ fun RocketsList(
             state.rockets.isNotEmpty() -> {
 
                 items(state.rockets) { rocket ->
-                    SlideInFromLeft(visible = rocketCardsVisible) {
-                        RocketCard(rocket, onClick = { state.onRocketClick(rocket) })
-                    }
+                    RocketCard(rocket, onClick = { state.onRocketClick(rocket) })
                 }
             }
         }
