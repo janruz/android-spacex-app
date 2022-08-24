@@ -10,7 +10,7 @@ import kotlin.math.roundToInt
 @Composable
 fun RocketSuccessRateSlider(
     successRateFilter: Float,
-    setSuccessRateFilterChanged: (Float) -> Unit,
+    setSuccessRateFilter: (Float) -> Unit,
     onSuccessRateFilterSelected: (UInt) -> Unit
 ) {
     var currentValue by remember(successRateFilter) {
@@ -21,7 +21,7 @@ fun RocketSuccessRateSlider(
         value = currentValue,
         onValueChange = {
             currentValue = it
-            setSuccessRateFilterChanged(it)
+            setSuccessRateFilter(it)
         },
         onValueChangeFinished = {
             onSuccessRateFilterSelected(
