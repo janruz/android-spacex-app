@@ -8,6 +8,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,12 +20,15 @@ import com.github.janruz.spacexapp.ui.components.AspectRatioImage
 import com.github.janruz.spacexapp.ui.components.rockets.RocketActiveLabel
 import com.github.janruz.spacexapp.ui.components.rockets.RocketSuccessRateLabel
 import com.github.janruz.spacexapp.ui.theme.border
+import com.github.janruz.spacexapp.R
 
 @Composable
 fun RocketCard(
     rocket: Rocket,
     onClick: () -> Unit
 ) {
+    val context = LocalContext.current
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -40,11 +46,19 @@ fun RocketCard(
                     .padding(top = 12.dp)
             ) {
                 RocketActiveLabel(
-                    isActive = rocket.active
+                    isActive = rocket.active,
+                    modifier = Modifier
+                        .semantics {
+                            contentDescription = context.getString(R.string.semantics_rocket_activity)
+                        }
                 )
 
                 RocketSuccessRateLabel(
-                    successRate = rocket.successRate
+                    successRate = rocket.successRate,
+                    modifier = Modifier
+                        .semantics {
+                            contentDescription = context.getString(R.string.semantics_rocket_success_rate)
+                        }
                 )
             }
 
@@ -58,6 +72,9 @@ fun RocketCard(
                 modifier = Modifier
                     .padding(horizontal = 12.dp)
                     .padding(top = 12.dp)
+                    .semantics {
+                        contentDescription = context.getString(R.string.semantics_rocket_name)
+                    }
             )
 
             Text(
@@ -68,6 +85,9 @@ fun RocketCard(
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .padding(12.dp)
+                    .semantics {
+                        contentDescription = context.getString(R.string.semantics_rocket_description)
+                    }
             )
         }
     }

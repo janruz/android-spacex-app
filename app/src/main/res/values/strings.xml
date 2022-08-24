@@ -35,4 +35,11 @@
     <string name="mass_kg_format">%1$s kg</string>
     <string name="find_out_more">Find out more</string>
     <string name="wikipedia">Wikipedia</string>
+
+    <!-- Semantics -->
+    <string name="semantics_rocket_activity">Rocket activity</string>
+    <string name="semantics_rocket_success_rate">Rocket success rate</string>
+    <string name="semantics_rocket_name">Rocket name</string>
+    <string name="semantics_rocket_description">Rocket description</string>
+
 </resources>

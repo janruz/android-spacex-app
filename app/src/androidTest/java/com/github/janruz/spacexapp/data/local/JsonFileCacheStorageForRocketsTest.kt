@@ -156,7 +156,11 @@ class JsonFileCacheStorageForRocketsTest {
                         successRate = 40U,
                         images = listOf(
                             "https://farm5.staticflickr.com/4599/38583829295_581f34dd84_b.jpg"
-                        )
+                        ),
+                        mass = 8930003293,
+                        height = 123894f,
+                        diameter = 12f,
+                        wikipediaUrl = "https://en.wikipedia.org/wiki/Falcon_Heavy"
                     ),
                     Rocket(
                         id = "5e9d0d95eda69973a809d1ec",
@@ -167,7 +171,11 @@ class JsonFileCacheStorageForRocketsTest {
                         successRate = 60U,
                         images = listOf(
                             "https://farm1.staticflickr.com/929/28787338307_3453a11a77_b.jpg"
-                        )
+                        ),
+                        mass = 4243424,
+                        height = 950394f,
+                        diameter = 38f,
+                        wikipediaUrl = "https://en.wikipedia.org/wiki/Falcon_Heavy"
                     ),
                     Rocket(
                         id = "5e9d0d96eda699382d09d1ee",
@@ -178,7 +186,11 @@ class JsonFileCacheStorageForRocketsTest {
                         successRate = 80U,
                         images = listOf(
                             "https://live.staticflickr.com/65535/48954138962_ee541e6755_b.jpg"
-                        )
+                        ),
+                        mass = 3539853,
+                        height = 1393043f,
+                        diameter = 2f,
+                        wikipediaUrl = "https://en.wikipedia.org/wiki/Falcon_Heavy"
                     )
                 )
             }
@@ -193,7 +205,11 @@ class JsonFileCacheStorageForRocketsTest {
                         successRate = 72U,
                         images = listOf(
                             "https://www.google.com"
-                        )
+                        ),
+                        mass = 425353,
+                        height = 198434f,
+                        diameter = 6f,
+                        wikipediaUrl = "https://en.wikipedia.org/wiki/Falcon_Heavy"
                     ),
                     Rocket(
                         id = "28032dasda983jksdf232",
@@ -204,7 +220,11 @@ class JsonFileCacheStorageForRocketsTest {
                         successRate = 82U,
                         images = listOf(
                             "https://www.stackoverflow.com"
-                        )
+                        ),
+                        mass = 839583,
+                        height = 5334f,
+                        diameter = 93f,
+                        wikipediaUrl = "https://en.wikipedia.org/wiki/Falcon_Heavy"
                     )
                 )
             }
