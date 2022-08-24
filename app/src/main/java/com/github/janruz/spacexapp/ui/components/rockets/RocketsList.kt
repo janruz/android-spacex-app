@@ -87,7 +87,7 @@ fun RocketsList(
 
                 RocketSuccessRateSlider(
                     state.successRateFilterRealtime,
-                    onSuccessRateFilterChanged = { state.successRateFilterRealtime = it },
+                    setSuccessRateFilterChanged = { state.successRateFilterRealtime = it },
                     onSuccessRateFilterSelected = { state.onSuccessRateFilterSelected(it) }
                 )
             }
