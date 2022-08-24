@@ -5,8 +5,8 @@ import androidx.compose.ui.res.stringResource
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.components.ErrorIndicator
 import com.github.janruz.spacexapp.ui.components.LoadingIndicator
-import com.github.janruz.spacexapp.ui.components.rockets.RocketsList
-import com.github.janruz.spacexapp.ui.components.rockets.RocketsListState
+import com.github.janruz.spacexapp.ui.components.rockets.list.RocketsList
+import com.github.janruz.spacexapp.ui.components.rockets.list.RocketsListState
 import com.github.janruz.spacexapp.utilities.Status
 
 @Composable

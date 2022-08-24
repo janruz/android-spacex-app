@@ -28,4 +28,11 @@
     <string name="error_fetching_api_showing_data_from_cache">Failed to fetch data. You are in the offline mode.</string>
     <string name="no_rockets_matching_given_filters">No rockets match chosen filters.</string>
     <string name="no_rockets">There are no SpaceX rockets.</string>
+    <string name="mass">Mass</string>
+    <string name="height">Height</string>
+    <string name="diameter">Diameter</string>
+    <string name="dimension_meters_format">%1$s meters</string>
+    <string name="mass_kg_format">%1$s kg</string>
+    <string name="find_out_more">Find out more</string>
+    <string name="wikipedia">Wikipedia</string>
 </resources>

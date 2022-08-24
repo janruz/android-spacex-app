@@ -5,8 +5,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.ScreenOrientation
 import com.github.janruz.spacexapp.ui.components.rememberScreenOrientation
-import com.github.janruz.spacexapp.ui.components.rockets.RocketDetailLandscape
-import com.github.janruz.spacexapp.ui.components.rockets.RocketDetailPortrait
+import com.github.janruz.spacexapp.ui.components.rockets.detail.RocketDetailLandscape
+import com.github.janruz.spacexapp.ui.components.rockets.detail.RocketDetailPortrait
 
 @Composable
 fun RocketDetailScreen(
@@ -31,7 +31,11 @@ fun RocketDetailScreenPreview() {
         successRate = 40U,
         images = listOf(
             "https://farm1.staticflickr.com/929/28787338307_3453a11a77_b.jpg"
-        )
+        ),
+        mass = 8930003293,
+        height = 123894f,
+        diameter = 12f,
+        wikipediaUrl = "https://en.wikipedia.org/wiki/Falcon_Heavy"
     )
 
     RocketDetailScreen(rocket = sampleRocket, onDismiss = {})

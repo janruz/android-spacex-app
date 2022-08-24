@@ -1,4 +1,4 @@
-package com.github.janruz.spacexapp.ui.components.rockets
+package com.github.janruz.spacexapp.ui.components.rockets.list
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -14,6 +14,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.AspectRatioImage
+import com.github.janruz.spacexapp.ui.components.rockets.RocketActiveLabel
+import com.github.janruz.spacexapp.ui.components.rockets.RocketSuccessRateLabel
 import com.github.janruz.spacexapp.ui.theme.border
 
 @Composable
@@ -83,7 +85,11 @@ private fun RocketCardPreview() {
         successRate = 40U,
         images = listOf(
             "https://farm1.staticflickr.com/929/28787338307_3453a11a77_b.jpg"
-        )
+        ),
+        mass = 8930003293,
+        height = 123894f,
+        diameter = 12f,
+        wikipediaUrl = "https://en.wikipedia.org/wiki/Falcon_Heavy"
     )
 
     RocketCard(rocket = sampleRocket, onClick = {})

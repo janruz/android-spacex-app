@@ -1,4 +1,4 @@
-package com.github.janruz.spacexapp.ui.components.rockets
+package com.github.janruz.spacexapp.ui.components.rockets.list
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

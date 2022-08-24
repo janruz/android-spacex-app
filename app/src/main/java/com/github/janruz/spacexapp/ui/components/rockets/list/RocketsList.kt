@@ -1,4 +1,4 @@
-package com.github.janruz.spacexapp.ui.components.rockets
+package com.github.janruz.spacexapp.ui.components.rockets.list
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

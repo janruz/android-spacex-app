@@ -9,7 +9,11 @@ data class Rocket(
     val firstFlight: String,
     val successRate: UInt,
     val description: String,
-    val images: List<String>
+    val images: List<String>,
+    val mass: Long,
+    val height: Float,
+    val diameter: Float,
+    val wikipediaUrl: String
 )
 
 data class RocketFromApi(
@@ -33,8 +37,31 @@ data class RocketFromApi(
     val description: String,
 
     @field:Json(name = "flickr_images")
-    val images: List<String>
-)
+    val images: List<String>,
+
+    @field:Json(name = "mass")
+    val mass: Mass,
+
+    @field:Json(name = "height")
+    val height: Dimension,
+
+    @field:Json(name = "diameter")
+    val diameter: Dimension,
+
+    @field:Json(name = "wikipedia")
+    val wikipedia: String
+) {
+
+    data class Mass(
+        @field:Json(name = "kg")
+        val kg: Long
+    )
+
+    data class Dimension(
+        @field:Json(name = "meters")
+        val meters: Float
+    )
+}
 
 val RocketFromApi.asRocket: Rocket get() {
     return Rocket(
@@ -44,7 +71,11 @@ val RocketFromApi.asRocket: Rocket get() {
         firstFlight = this.firstFlight,
         successRate = this.successRate,
         description = this.description,
-        images = this.images
+        images = this.images,
+        mass = this.mass.kg,
+        height = this.height.meters,
+        diameter = this.diameter.meters,
+        wikipediaUrl = this.wikipedia
     )
 }
 

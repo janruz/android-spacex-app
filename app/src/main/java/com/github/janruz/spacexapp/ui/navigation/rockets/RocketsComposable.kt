@@ -2,14 +2,13 @@ package com.github.janruz.spacexapp.ui.navigation.rockets
 
 import android.widget.Toast
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.github.janruz.spacexapp.ui.components.rockets.rememberRocketsListState
+import com.github.janruz.spacexapp.ui.components.rockets.list.rememberRocketsListState
 import com.github.janruz.spacexapp.ui.navigation.NavConstants
 import com.github.janruz.spacexapp.ui.screens.rockets.RocketsScreen
 import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
