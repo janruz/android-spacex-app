@@ -2,6 +2,9 @@ package com.github.janruz.spacexapp.data.models
 
 import com.squareup.moshi.Json
 
+/**
+ * The Company model class used throughtout the application.
+ */
 data class Company(
     val id: String,
     val founder: String,
@@ -15,6 +18,9 @@ data class Company(
     val summary: String
 )
 
+/**
+ * The Company class representing the company data we get from the API.
+ */
 data class CompanyFromApi(
 
     @field:Json(name = "id")

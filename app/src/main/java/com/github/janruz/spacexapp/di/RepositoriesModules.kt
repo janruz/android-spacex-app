@@ -15,6 +15,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * Defines functions binding repositories implementations to corresponding interfaces.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoriesBindingsModule {
@@ -30,6 +33,9 @@ abstract class RepositoriesBindingsModule {
     ): CompanyRepository
 }
 
+/**
+ * Defines functions for constructing instances of repositories.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoriesProvisionModule {

@@ -16,6 +16,9 @@ import com.github.janruz.spacexapp.ui.components.CloseIcon
 import com.github.janruz.spacexapp.ui.components.animation.FadeIn
 import com.github.janruz.spacexapp.ui.theme.spacing
 
+/**
+ * Presents the details of the given rocket optimized for the landscape orientation.
+ */
 @Composable
 fun RocketDetailLandscape(
     rocket: Rocket,

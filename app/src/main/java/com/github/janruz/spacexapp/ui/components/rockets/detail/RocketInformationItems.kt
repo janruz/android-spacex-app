@@ -19,6 +19,9 @@ import com.github.janruz.spacexapp.utilities.formatAsDate
 import com.github.janruz.spacexapp.utilities.formatAsNumber
 import com.github.janruz.spacexapp.utilities.openWikipedia
 
+/**
+ * Defines a set of lazy list items for displaying detailed information about the given rocket.
+ */
 fun LazyListScope.rocketInformationItems(
     rocket: Rocket,
     modifier: Modifier = Modifier

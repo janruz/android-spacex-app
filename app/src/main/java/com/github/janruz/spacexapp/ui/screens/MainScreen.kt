@@ -23,6 +23,9 @@ import com.github.janruz.spacexapp.utilities.isRocketDetail
 import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
 import kotlinx.coroutines.launch
 
+/**
+ * The parent composable hosting all the app's UI
+ */
 @Composable
 fun MainScreen(
     navController: NavHostController

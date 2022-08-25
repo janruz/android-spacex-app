@@ -8,6 +8,10 @@ import com.github.janruz.spacexapp.ui.components.rememberScreenOrientation
 import com.github.janruz.spacexapp.ui.components.rockets.detail.RocketDetailLandscape
 import com.github.janruz.spacexapp.ui.components.rockets.detail.RocketDetailPortrait
 
+/**
+ * A screen showing detail information about a given rocket
+ * @param onDismiss the function called when the user asks to leave the screen
+ */
 @Composable
 fun RocketDetailScreen(
     rocket: Rocket,

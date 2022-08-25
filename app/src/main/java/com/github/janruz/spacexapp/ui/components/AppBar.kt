@@ -15,6 +15,12 @@ import androidx.compose.ui.res.stringResource
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.theme.spacing
 
+/**
+ * Represents the top app bar used throughout the application.
+ * @param showLogo should show the SpaceX logo or not
+ * @param title the text to be shown in the app bar instead of the logo
+ * @param onDrawerIconClick fires when the user clicks on the hamburger icon
+ */
 @Composable
 fun AppBar(
     showLogo: Boolean,
@@ -50,6 +56,13 @@ fun AppBar(
     }
 }
 
+/**
+ * Adds an enter and an exit animation to the AppBar
+ * @param visible should the app bar be visible
+ * @param showLogo should show the SpaceX logo or not
+ * @param title the text to be shown in the app bar instead of the logo
+ * @param onDrawerIconClick fires when the user clicks on the hamburger icon
+ */
 @Composable
 fun AnimatedAppBar(
     visible: Boolean,

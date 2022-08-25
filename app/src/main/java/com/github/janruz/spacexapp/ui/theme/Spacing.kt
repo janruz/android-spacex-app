@@ -7,6 +7,9 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+/**
+ * Represents a set of different spacing values used throughout the UI of the application.
+ */
 data class Spacing(
     val default: Dp = 0.dp,
     val xxSmall: Dp = 4.dp,
@@ -20,6 +23,11 @@ data class Spacing(
 
 val LocalSpacing = compositionLocalOf { Spacing() }
 
+/**
+ * An extension allowing access to the spacing values via MaterialTheme object.
+ * It is not necessary to extend it though. It is done just for the sake of consistency
+ * with other theme related values already provided (MaterialTheme.colors...).
+ */
 val MaterialTheme.spacing: Spacing
     @Composable
     @ReadOnlyComposable

@@ -9,11 +9,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * The interface describing a rockets repository.
+ */
 interface RocketsRepository {
     suspend fun getRocketsFromCache(): Result<List<Rocket>?>
     suspend fun fetchRockets(): Result<List<Rocket>>
 }
 
+/**
+ * Default implementation of the RocketsRepository interface.
+ */
 class RocketsRepositoryImpl @Inject constructor(
     private val rocketsWebService: RocketsWebService,
     private val rocketsLocalStorage: RocketsCacheStorage

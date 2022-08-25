@@ -11,6 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.janruz.spacexapp.ui.theme.spacing
 
+/**
+ * Displays the given message filling the width of the entire entire screen. It is basically
+ * a helper composable containing UI made for displaying "no data" messages such as when
+ * user picks such a combination of rocket filters that there are no rockets that match them.
+ */
 @Composable
 fun NoData(
     message: String

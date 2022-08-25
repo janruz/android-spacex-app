@@ -22,6 +22,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+/**
+ * Displays the rockets in vertical grid
+ * @param state the state holder for this composable. Use rememberRocketsListState to get
+ * and remember the instance of it.
+ */
 @Composable
 fun RocketsList(
     state: RocketsListState,
@@ -68,6 +73,10 @@ fun RocketsList(
     }
 }
 
+/**
+ * Constructs and remembers an instance of RocketsListState, the state holder
+ * for the RocketsList composable.
+ */
 @Composable
 fun rememberRocketsListState(
     rocketsViewModel: RocketsViewModel,
@@ -78,6 +87,9 @@ fun rememberRocketsListState(
     RocketsListState(rocketsViewModel, scope, navigateToDetailScreen)
 }
 
+/**
+ * The state holder for the RocketsList composable.
+ */
 class RocketsListState(
     private val viewModel: RocketsViewModel,
     private val scope: CoroutineScope,

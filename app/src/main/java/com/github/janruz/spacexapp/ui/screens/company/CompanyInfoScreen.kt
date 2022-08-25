@@ -15,6 +15,12 @@ import com.github.janruz.spacexapp.ui.components.company.CompanyInfo
 import com.github.janruz.spacexapp.ui.theme.spacing
 import com.github.janruz.spacexapp.utilities.Status
 
+/**
+ * A screen showing details about the company
+ * @param companyStatus the status of the task of getting the company data
+ * @param onTryAgain the function called when there is an error screen showing and the user taps
+ * on a "try again" button indicating they want the app to try to get company data again.
+ */
 @Composable
 fun CompanyInfoScreen(
     companyStatus: Status,

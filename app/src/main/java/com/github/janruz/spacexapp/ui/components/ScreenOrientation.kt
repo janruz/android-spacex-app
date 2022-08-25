@@ -9,6 +9,9 @@ enum class ScreenOrientation {
     PORTRAIT, LANDSCAPE
 }
 
+/**
+ * Remembers and returns the current screen orientation
+ */
 @Composable
 fun rememberScreenOrientation(): ScreenOrientation {
     val configuration = LocalConfiguration.current

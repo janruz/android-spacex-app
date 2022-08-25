@@ -7,11 +7,17 @@ import com.github.janruz.spacexapp.data.networking.CompanyWebService
 import com.github.janruz.spacexapp.utilities.runCatchingNetworkExceptions
 import javax.inject.Inject
 
+/**
+ * The interface describing a company repository.
+ */
 interface CompanyRepository {
     suspend fun getCompanyFromCache(): Result<Company?>
     suspend fun fetchCompany(): Result<Company>
 }
 
+/**
+ * Default implementation of the CompanyRepository interface.
+ */
 class CompanyRepositoryImpl @Inject constructor(
     private val companyWebService: CompanyWebService,
     private val companyCacheStorage: CompanyCacheStorage

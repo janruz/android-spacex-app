@@ -8,6 +8,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import kotlinx.coroutines.delay
 
+/**
+ * Wraps logic handling fade in animation.
+ */
 @Composable
 fun FadeIn(
     modifier: Modifier = Modifier,

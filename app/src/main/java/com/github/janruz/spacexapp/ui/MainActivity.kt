@@ -8,6 +8,9 @@ import com.github.janruz.spacexapp.ui.screens.MainScreen
 import com.github.janruz.spacexapp.ui.theme.SpaceXAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * The one and only activity hosting the UI of the entire app
+ */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 

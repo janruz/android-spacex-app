@@ -9,6 +9,9 @@ import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 import kotlin.reflect.KClass
 
+/**
+ * Implementation of the FileCacheStorage that saves the data to the files in the form of JSON.
+ */
 class JsonFileCacheStorage<T> @Inject constructor(
     private val context: Context,
     private val jsonAdapter: JsonAdapter<T>

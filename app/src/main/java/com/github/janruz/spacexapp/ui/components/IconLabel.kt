@@ -15,6 +15,10 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.ui.theme.spacing
 
+/**
+ * Displays the given text along with an icon aligned in a row (icon - text).
+ * @param color the color to be used for the text and the icon
+ */
 @Composable
 fun IconLabel(
     text: String,

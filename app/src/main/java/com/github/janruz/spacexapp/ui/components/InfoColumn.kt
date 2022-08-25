@@ -7,6 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 
+/**
+ * Displays a text along with a label describing the meaning of the text aligned in a column.
+ */
 @Composable
 fun InfoColumn(
     label: String,

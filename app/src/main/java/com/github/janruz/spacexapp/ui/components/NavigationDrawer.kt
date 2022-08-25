@@ -24,6 +24,12 @@ import com.github.janruz.spacexapp.ui.theme.border
 import com.github.janruz.spacexapp.ui.theme.spacing
 import kotlinx.parcelize.Parcelize
 
+/**
+ * Represents a single menu item in the navigation drawer
+ * @param id the unique identifier of this menu item (ideally the navigation route
+ * of the corresponding destination).
+ * @param titleId the string resource id of the title shown in the drawer
+ */
 @Parcelize
 data class NavDrawerItem(
     val id: String,
@@ -31,6 +37,9 @@ data class NavDrawerItem(
     @DrawableRes val iconId: Int
 ) : Parcelable
 
+/**
+ * Defines the header of navigation drawer.
+ */
 @Composable
 fun NavDrawerHeader(
     modifier: Modifier = Modifier
@@ -56,6 +65,12 @@ fun NavDrawerHeader(
     }
 }
 
+/**
+ * Defines the UI of the menu list in the navigation drawer.
+ * @param items the list of all the nav drawer items to be displayed
+ * @param activeItemId the id of the nav drawer item where the user is currently located
+ * @param onItemClick fires when a user clicks on a given nav drawer item
+ */
 @Composable
 fun NavDrawerBody(
     items: List<NavDrawerItem>,

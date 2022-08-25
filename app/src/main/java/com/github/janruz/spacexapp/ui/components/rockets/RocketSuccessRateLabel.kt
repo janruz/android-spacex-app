@@ -11,6 +11,9 @@ import com.github.janruz.spacexapp.ui.theme.neutral
 import com.github.janruz.spacexapp.ui.theme.positive
 import com.github.janruz.spacexapp.utilities.formatAsPercent
 
+/**
+ * Displays the success rate of a rocket with a text and an icon
+ */
 @Composable
 fun RocketSuccessRateLabel(
     successRate: UInt,

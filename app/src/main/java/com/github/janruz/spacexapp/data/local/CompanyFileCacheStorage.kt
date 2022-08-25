@@ -3,6 +3,9 @@ package com.github.janruz.spacexapp.data.local
 import com.github.janruz.spacexapp.data.models.Company
 import javax.inject.Inject
 
+/**
+ * Implementation of the CompanyCacheStorage that uses a plain file as the cache.
+ */
 class CompanyFileCacheStorage @Inject constructor(
     private val fileCacheStorage: FileCacheStorage<Company>
 ): CompanyCacheStorage {

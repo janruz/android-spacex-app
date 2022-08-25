@@ -8,6 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
+/**
+ * Shows loading indicator in the middle of the entire screen.
+ */
 @Composable
 fun LoadingIndicator() {
     Box(

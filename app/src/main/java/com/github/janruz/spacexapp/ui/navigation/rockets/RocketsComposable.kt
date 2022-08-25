@@ -13,6 +13,9 @@ import com.github.janruz.spacexapp.ui.navigation.NavConstants
 import com.github.janruz.spacexapp.ui.screens.rockets.RocketsScreen
 import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
 
+/**
+ * The rockets list destination
+ */
 fun NavGraphBuilder.rocketsComposable(
     navController: NavHostController,
     navigateToDetailScreen: (rocketId: String) -> Unit

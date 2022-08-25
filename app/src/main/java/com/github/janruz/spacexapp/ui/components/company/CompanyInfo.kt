@@ -17,6 +17,9 @@ import com.github.janruz.spacexapp.ui.theme.spacing
 import com.github.janruz.spacexapp.utilities.formatAsCurrency
 import com.github.janruz.spacexapp.utilities.formatAsNumber
 
+/**
+ * Displays data about the specified company.
+ */
 @Composable
 fun CompanyInfo(
     company: Company

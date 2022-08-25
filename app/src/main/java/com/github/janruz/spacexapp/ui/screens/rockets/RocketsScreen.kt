@@ -14,6 +14,14 @@ import com.github.janruz.spacexapp.ui.components.rockets.list.RocketsListState
 import com.github.janruz.spacexapp.ui.theme.spacing
 import com.github.janruz.spacexapp.utilities.Status
 
+/**
+ * A screen showing a list of rockets
+ * @param rocketsStatus the status of the task of getting rockets data
+ * @param rocketsListState the state holder representing data needed to properly display the list
+ * of rockets
+ * @param onTryAgain the function called when there is an error screen showing and the user taps
+ * on a "try again" button indicating they want the app to try to get rockets data again.
+ */
 @Composable
 fun RocketsScreen(
     rocketsStatus: Status,

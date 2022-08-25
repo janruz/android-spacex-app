@@ -10,6 +10,9 @@ import com.github.janruz.spacexapp.ui.components.IconLabel
 import com.github.janruz.spacexapp.ui.theme.positive
 import com.github.janruz.spacexapp.ui.theme.negative
 
+/**
+ * Displays if the rocket is active or not using corresponding label and icon
+ */
 @Composable
 fun RocketActiveLabel(
     isActive: Boolean,

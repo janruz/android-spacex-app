@@ -13,6 +13,9 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * Defines functions binding cache storage implementations to corresponding interfaces.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class CacheStorageBindingsModule {
@@ -38,6 +41,9 @@ abstract class CacheStorageBindingsModule {
     ): FileCacheStorage<Company>
 }
 
+/**
+ * Defines functions for constructing instances of cache storage related components.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object CacheStorageProvisionModule {

@@ -2,6 +2,9 @@ package com.github.janruz.spacexapp.data.models
 
 import com.squareup.moshi.Json
 
+/**
+ * The Rocket model class used throughout the application.
+ */
 data class Rocket(
     val id: String,
     val name: String,
@@ -16,6 +19,9 @@ data class Rocket(
     val wikipediaUrl: String
 )
 
+/**
+ * The Rocket class representing the rocket data we get from the API.
+ */
 data class RocketFromApi(
 
     @field:Json(name = "id")

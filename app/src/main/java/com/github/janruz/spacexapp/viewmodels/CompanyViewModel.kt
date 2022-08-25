@@ -16,26 +16,50 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel exposing data about the company
+ */
 @HiltViewModel
 class CompanyViewModel @Inject constructor(
     private val companyRepository: CompanyRepository
 ): ViewModel() {
 
     private val _companyStatus = mutableStateOf(Status.NONE)
+
+    /**
+     * The status of the task of getting data about the company
+     */
     val companyStatus = _companyStatus as State<Status>
 
     private val _messageId = MutableSharedFlow<Int>()
+
+    /**
+     * String resource id of a message containing status information about tasks performed
+     * by this viewModel, for example a message telling user they are in the offline mode.
+     */
     val messageId = _messageId.asSharedFlow()
 
     private val _company = mutableStateOf<Company?>(null)
+
+    /**
+     * The company data
+     */
     val company = _company as State<Company?>
 
+    /**
+     * The job of the coroutine handling getting data about the company. It is used to ensure
+     * that there is always just one coroutine trying to get the company data.
+     */
     private var getCompanyJob: Job? = null
 
     init {
         getCompany()
     }
 
+    /**
+     * Tries to first get the company data from local cache and then fetch more up-to-date
+     * data from the API.
+     */
     fun getCompany() {
         getCompanyJob?.cancel()
 

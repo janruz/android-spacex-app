@@ -10,6 +10,9 @@ import com.github.janruz.spacexapp.ui.navigation.NavConstants
 import com.github.janruz.spacexapp.ui.screens.company.CompanyInfoScreen
 import com.github.janruz.spacexapp.viewmodels.CompanyViewModel
 
+/**
+ * The company data destination
+ */
 fun NavGraphBuilder.companyInfoComposable() {
     composable(
         route = NavConstants.COMPANY_INFO_SCREEN

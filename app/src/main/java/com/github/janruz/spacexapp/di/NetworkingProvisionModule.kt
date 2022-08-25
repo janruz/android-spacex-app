@@ -15,6 +15,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
+/**
+ * Defines functions for constructing instances of network related components.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkingProvisionModule {

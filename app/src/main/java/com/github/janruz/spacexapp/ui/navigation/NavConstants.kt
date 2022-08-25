@@ -3,6 +3,9 @@ package com.github.janruz.spacexapp.ui.navigation
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.components.NavDrawerItem
 
+/**
+ * Defines constants related to navigation
+ */
 object NavConstants {
 
     const val COMPANY_INFO_SCREEN = "/companyInfo"

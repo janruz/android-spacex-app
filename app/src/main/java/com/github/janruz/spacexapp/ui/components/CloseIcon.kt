@@ -15,6 +15,9 @@ import androidx.compose.ui.res.stringResource
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.theme.spacing
 
+/**
+ * An icon button intended to be used as an alternative for the classic "navigate up" arrow.
+ */
 @Composable
 fun CloseIcon(
     onClick: () -> Unit,

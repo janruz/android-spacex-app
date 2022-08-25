@@ -12,6 +12,9 @@ import com.github.janruz.spacexapp.ui.navigation.company.companyInfoComposable
 import com.github.janruz.spacexapp.ui.navigation.rockets.rocketDetailComposable
 import com.github.janruz.spacexapp.ui.navigation.rockets.rocketsComposable
 
+/**
+ * Sets up the navigation of the application including nav destinations, nav graphs...
+ */
 @Composable
 fun SetupNavigation(
     navController: NavHostController,

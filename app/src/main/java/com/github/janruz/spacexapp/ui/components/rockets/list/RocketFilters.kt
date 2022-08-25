@@ -17,6 +17,11 @@ import com.github.janruz.spacexapp.ui.components.RadioTextButton
 import com.github.janruz.spacexapp.utilities.formatAsPercent
 import com.github.janruz.spacexapp.viewmodels.RocketActiveFilter
 
+/**
+ * Defines UI for filtering rockets
+ * @param state the state holder for this composable. Use rememberRocketFiltersState to get
+ * and remember an instance of it.
+ */
 @Composable
 fun RocketFilters(
     state: RocketFiltersState,
@@ -68,6 +73,10 @@ fun RocketFilters(
     }
 }
 
+/**
+ * Constructs and remembers an instance of RocketFiltersState.
+ * @param listState an instance of RocketsListState to build the RocketFiltersState out of
+ */
 @Composable
 fun rememberRocketFiltersState(
     listState: RocketsListState
@@ -75,6 +84,9 @@ fun rememberRocketFiltersState(
     RocketFiltersState(listState)
 }
 
+/**
+ * The state holder for the RocketFilters composable.
+ */
 class RocketFiltersState(
     listState: RocketsListState
 ) {

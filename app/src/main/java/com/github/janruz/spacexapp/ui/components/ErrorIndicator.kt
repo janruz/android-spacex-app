@@ -14,6 +14,11 @@ import androidx.compose.ui.unit.sp
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.theme.spacing
 
+/**
+ * Presents an error message along with a button allowing the user to try the task again.
+ * @param message the error message
+ * @param onTryAgain fires when the user clicks on the "try again" button
+ */
 @Composable
 fun ErrorIndicator(
     message: String,

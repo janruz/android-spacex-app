@@ -29,7 +29,7 @@ The viewModels layer is the bridge between the data and the UI layer. ViewModel'
 - Language - Kotlin
 - UI - Jetpack Compose
 - Navigation - Jetpack Navigation Component for Compose
-- Dependecy Injection - Hilt
+- Dependency Injection - Hilt
 - REST API communication - Retrofit
 - JSON parsing - Moshi
 - Loading images - Coil

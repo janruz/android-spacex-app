@@ -3,6 +3,9 @@ package com.github.janruz.spacexapp.data.local
 import com.github.janruz.spacexapp.data.models.Rocket
 import javax.inject.Inject
 
+/**
+ * Implementation of the RocketsCacheStorage that uses a plain file as the cache.
+ */
 class RocketsFileCacheStorage @Inject constructor(
     private val fileCacheStorage: FileCacheStorage<List<Rocket>>
 ): RocketsCacheStorage {

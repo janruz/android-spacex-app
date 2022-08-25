@@ -11,6 +11,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * Defines functions for constructing JsonAdapters for various types.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object JsonAdaptersProvisionModule {

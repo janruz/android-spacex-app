@@ -11,6 +11,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.R
 
+/**
+ * A screen showing information about this app and its purpose
+ */
 @Composable
 fun AboutAppScreen() {
     Text(

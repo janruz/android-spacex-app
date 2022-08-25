@@ -8,6 +8,9 @@ import androidx.compose.ui.Modifier
 import com.github.janruz.spacexapp.ui.theme.border
 import kotlin.math.roundToInt
 
+/**
+ * Displays a slider for picking the minimum rocket success rate
+ */
 @Composable
 fun RocketSuccessRateSlider(
     successRateFilter: Float,
@@ -15,6 +18,12 @@ fun RocketSuccessRateSlider(
     onSuccessRateFilterSelected: (UInt) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    // The purpose of this state mirroring the hoisted successRateFilter state is just
+    // to encapsulate the current value of the slider so that it is available in
+    // the onValueChangeFinished lambda below. If we used successRateFilter in the lambdas,
+    // we would in fact refer to the capture of the value of the successRateFilter
+    // from the latest recomposition, not necessarily the current value of the successRateFilter
+    // as the layout may not have recomposed by the time the onValueChangeFinished is called.
     var currentValue by remember(successRateFilter) {
         mutableStateOf(successRateFilter)
     }

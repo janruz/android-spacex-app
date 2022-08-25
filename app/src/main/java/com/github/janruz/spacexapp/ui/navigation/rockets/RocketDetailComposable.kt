@@ -13,6 +13,9 @@ import com.github.janruz.spacexapp.ui.navigation.NavConstants
 import com.github.janruz.spacexapp.ui.screens.rockets.RocketDetailScreen
 import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
 
+/**
+ * The rocket detail destination
+ */
 fun NavGraphBuilder.rocketDetailComposable(
     navController: NavHostController,
     navigateUp: () -> Unit

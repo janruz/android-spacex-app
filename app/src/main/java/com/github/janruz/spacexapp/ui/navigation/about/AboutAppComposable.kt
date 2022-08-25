@@ -5,6 +5,9 @@ import androidx.navigation.compose.composable
 import com.github.janruz.spacexapp.ui.navigation.NavConstants
 import com.github.janruz.spacexapp.ui.screens.about.AboutAppScreen
 
+/**
+ * The about app destination
+ */
 fun NavGraphBuilder.aboutAppComposable() {
     composable(
         route = NavConstants.ABOUT_APP_SCREEN

@@ -8,6 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
+/**
+ * A radio button paired with a text in a row
+ */
 @Composable
 fun RadioTextButton(
     text: String,

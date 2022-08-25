@@ -17,17 +17,32 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel exposing rockets data with filtering capabilities
+ */
 @HiltViewModel
 class RocketsViewModel @Inject constructor(
     private val rocketsRepository: RocketsRepository
 ): ViewModel() {
 
     private val _rocketsStatus = mutableStateOf(Status.NONE)
+
+    /**
+     * The status of the task of getting rockets data
+     */
     val rocketsStatus = _rocketsStatus as State<Status>
 
     private val _messageId = MutableSharedFlow<Int>()
+
+    /**
+     * String resource id of a message containing status information about tasks performed
+     * by this viewModel, for example a message telling user they are in the offline mode.
+     */
     val messageId = _messageId.asSharedFlow()
 
+    /**
+     * The collection of rockets matching given filters
+     */
     val rockets = derivedStateOf {
         _allRockets.value
             .applyFiltering(
@@ -35,18 +50,37 @@ class RocketsViewModel @Inject constructor(
                 minimumSuccessRate = successRateFilter.value
             )
     }
+
+    /**
+     * The value of the rocket activity filter
+     */
     val activeFilter = mutableStateOf(RocketActiveFilter.ALL)
+
+    /**
+     * The value of the rocket minimum success rate filter
+     */
     val successRateFilter = mutableStateOf(0U)
 
     private val _allRockets = mutableStateOf(listOf<Rocket>())
+
+    /**
+     * The collection of all the rockets available (no filters applied)
+     */
     val allRockets = _allRockets as State<List<Rocket>>
 
+    /**
+     * The job of a coroutine responsible for getting the rockets data. It is used to ensure
+     * that there is always only one active coroutine trying to get the rockets data.
+     */
     private var getRocketsJob: Job? = null
 
     init {
         getRockets()
     }
 
+    /**
+     * Tries to first get the rockets from cache and then fetch more up-to-date data from the API
+     */
     fun getRockets() {
         getRocketsJob?.cancel()
 
@@ -83,10 +117,29 @@ class RocketsViewModel @Inject constructor(
     }
 }
 
+/**
+ * Describes all the possible values for filtering rockets by their activity
+ */
 enum class RocketActiveFilter {
-    ACTIVE, INACTIVE, ALL
+    /**
+     * Show only active rockets
+     */
+    ACTIVE,
+
+    /**
+     * Show only inactive rockets
+     */
+    INACTIVE,
+
+    /**
+     * Show all the rockets
+     */
+    ALL
 }
 
+/**
+ * Helper function filtering the list of rockets by both activity and minimum success rate
+ */
 fun List<Rocket>.applyFiltering(
     activeFilter: RocketActiveFilter,
     minimumSuccessRate: UInt
