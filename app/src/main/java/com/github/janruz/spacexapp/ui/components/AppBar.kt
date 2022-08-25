@@ -11,11 +11,12 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.theme.spacing
 
 @Composable
-fun TopBar(
+fun AppBar(
     showLogo: Boolean,
     title: String?,
     onDrawerIconClick: () -> Unit
@@ -27,14 +28,14 @@ fun TopBar(
             Icon(
                 imageVector = Icons.Default.Menu,
                 tint = MaterialTheme.colors.onBackground,
-                contentDescription = ""
+                contentDescription = stringResource(id = R.string.semantics_toggle_nav_drawer)
             )
         }
 
         if(showLogo || title == null) {
             Image(
                 painter = painterResource(id = R.drawable.spacex_logo),
-                contentDescription = "",
+                contentDescription = stringResource(id = R.string.semantics_spacex_logo),
                 modifier = Modifier.padding(MaterialTheme.spacing.medium)
             )
         } else {
@@ -59,6 +60,6 @@ fun AnimatedAppBar(
         enter = slideInVertically { -it },
         exit = slideOutVertically { -it }
     ) {
-        TopBar(showLogo, title, onDrawerIconClick)
+        AppBar(showLogo, title, onDrawerIconClick)
     }
 }

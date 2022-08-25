@@ -12,12 +12,13 @@ import com.github.janruz.spacexapp.data.models.Rocket
 @Composable
 fun AspectRatioImage(
     imageUrl: String?,
+    contentDescription: String?,
     modifier: Modifier = Modifier,
     aspectRatio: Float = 4 / 3f
 ) {
     AsyncImage(
         model = imageUrl,
-        contentDescription = null,
+        contentDescription,
         contentScale = ContentScale.FillBounds,
         modifier = modifier
             .aspectRatio(ratio = aspectRatio)

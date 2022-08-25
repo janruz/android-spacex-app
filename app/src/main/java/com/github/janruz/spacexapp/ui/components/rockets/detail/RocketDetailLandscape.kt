@@ -7,8 +7,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
+import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.CloseIcon
 import com.github.janruz.spacexapp.ui.components.animation.FadeIn
@@ -28,7 +30,7 @@ fun RocketDetailLandscape(
             ) {
                 AsyncImage(
                     model = rocket.images.firstOrNull(),
-                    contentDescription = "",
+                    contentDescription = stringResource(id = R.string.semantics_rocket_image),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize()
                 )

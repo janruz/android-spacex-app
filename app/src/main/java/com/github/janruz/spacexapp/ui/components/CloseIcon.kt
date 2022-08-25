@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.theme.spacing
 
@@ -22,7 +23,7 @@ fun CloseIcon(
     IconButton(onClick, modifier) {
         Icon(
             painter = painterResource(id = R.drawable.ic_clear),
-            contentDescription = "",
+            contentDescription = stringResource(id = R.string.semantics_close),
             tint = Color.White,
             modifier = Modifier
                 .clip(CircleShape)

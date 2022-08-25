@@ -8,6 +8,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.AspectRatioImage
 import com.github.janruz.spacexapp.ui.components.CloseIcon
@@ -27,7 +29,10 @@ fun RocketDetailPortrait(
         ) {
             item {
                 Box(contentAlignment = Alignment.TopStart) {
-                    AspectRatioImage(imageUrl = rocket.images.firstOrNull())
+                    AspectRatioImage(
+                        imageUrl = rocket.images.firstOrNull(),
+                        contentDescription = stringResource(id = R.string.semantics_rocket_image)
+                    )
 
                     CloseIcon(onClick = onDismiss)
                 }

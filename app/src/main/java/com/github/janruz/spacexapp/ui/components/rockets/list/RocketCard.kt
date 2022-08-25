@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -38,7 +39,10 @@ fun RocketCard(
         border = BorderStroke(width = 1.dp, MaterialTheme.colors.border)
     ) {
         Column {
-            AspectRatioImage(imageUrl = rocket.images.firstOrNull())
+            AspectRatioImage(
+                imageUrl = rocket.images.firstOrNull(),
+                contentDescription = stringResource(id = R.string.semantics_rocket_image)
+            )
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
@@ -87,7 +91,8 @@ fun RocketCard(
                 modifier = Modifier
                     .padding(MaterialTheme.spacing.small)
                     .semantics {
-                        contentDescription = context.getString(R.string.semantics_rocket_description)
+                        contentDescription =
+                            context.getString(R.string.semantics_rocket_description)
                     }
             )
         }

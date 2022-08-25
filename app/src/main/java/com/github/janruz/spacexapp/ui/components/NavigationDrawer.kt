@@ -40,7 +40,7 @@ fun NavDrawerHeader() {
     ) {
         Image(
             painter = painterResource(id = R.drawable.spacex_logo),
-            contentDescription = stringResource(id = R.string.spacex_logo),
+            contentDescription = stringResource(id = R.string.semantics_spacex_logo),
             modifier = Modifier
                 .padding(
                     top = MaterialTheme.spacing.xxLarge,

@@ -32,7 +32,7 @@ fun ErrorIndicator(
             Icon(
                 painter = painterResource(id = R.drawable.ic_error),
                 tint = MaterialTheme.colors.error,
-                contentDescription = stringResource(id = R.string.error_icon),
+                contentDescription = stringResource(id = R.string.semantics_error_icon),
                 modifier = Modifier
                     .size(40.dp)
             )

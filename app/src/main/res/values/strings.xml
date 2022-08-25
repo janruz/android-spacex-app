@@ -22,7 +22,7 @@
     <string name="valuation">Valuation</string>
     <string name="rocket_activity">Activity</string>
     <string name="rocket_minimum_success_rate">Minimum success rate: %1$s</string>
-    <string name="error_icon">Error icon</string>
+    <string name="semantics_error_icon">Error icon</string>
     <string name="error_get_rockets">Oops, failed to load rockets.\nCheck your internet connection and try again, please.</string>
     <string name="error_get_company">Oops, failed to load information about SpaceX.\nCheck your internet connection and try again, please.</string>
     <string name="error_fetching_api_showing_data_from_cache">Failed to fetch data. You are in the offline mode.</string>
@@ -41,5 +41,9 @@
     <string name="semantics_rocket_success_rate">Rocket success rate</string>
     <string name="semantics_rocket_name">Rocket name</string>
     <string name="semantics_rocket_description">Rocket description</string>
+    <string name="semantics_rocket_image">Rocket image</string>
+    <string name="semantics_toggle_nav_drawer">Open or close navigation drawer</string>
+    <string name="semantics_spacex_logo">SpaceX Logo</string>
+    <string name="semantics_close">Close</string>
 
 </resources>
