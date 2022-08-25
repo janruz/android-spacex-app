@@ -10,10 +10,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.models.Company
 import com.github.janruz.spacexapp.ui.components.InfoColumn
+import com.github.janruz.spacexapp.ui.theme.spacing
 import com.github.janruz.spacexapp.utilities.formatAsCurrency
 import com.github.janruz.spacexapp.utilities.formatAsNumber
 
@@ -23,10 +23,10 @@ fun CompanyInfo(
 ) {
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(24.dp),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.large),
         modifier = Modifier
             .verticalScroll(rememberScrollState(), enabled = true)
-            .padding(16.dp)
+            .padding(MaterialTheme.spacing.medium)
     ) {
         Text(
             text = company.summary,

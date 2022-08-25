@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.github.janruz.spacexapp.R
+import com.github.janruz.spacexapp.ui.theme.spacing
 
 @Composable
 fun ErrorIndicator(
@@ -22,10 +23,10 @@ fun ErrorIndicator(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(MaterialTheme.spacing.medium)
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Icon(

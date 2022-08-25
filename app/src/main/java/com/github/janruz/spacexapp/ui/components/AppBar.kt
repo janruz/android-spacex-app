@@ -4,17 +4,15 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.R
+import com.github.janruz.spacexapp.ui.theme.spacing
 
 @Composable
 fun TopBar(
@@ -23,7 +21,7 @@ fun TopBar(
     onDrawerIconClick: () -> Unit
 ) {
     TopAppBar(
-        backgroundColor = MaterialTheme.colors.background,
+        backgroundColor = MaterialTheme.colors.background
     ) {
         IconButton(onClick = onDrawerIconClick) {
             Icon(
@@ -37,7 +35,7 @@ fun TopBar(
             Image(
                 painter = painterResource(id = R.drawable.spacex_logo),
                 contentDescription = "",
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(MaterialTheme.spacing.medium)
             )
         } else {
             Text(

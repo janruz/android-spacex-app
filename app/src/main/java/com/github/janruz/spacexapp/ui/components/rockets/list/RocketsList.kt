@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -15,6 +16,7 @@ import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.ui.components.NoData
 import com.github.janruz.spacexapp.ui.components.maxLineSpanItem
+import com.github.janruz.spacexapp.ui.theme.spacing
 import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
@@ -34,9 +36,9 @@ fun RocketsList(
     }
 
     LazyVerticalGrid(
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        contentPadding = PaddingValues(12.dp),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
+        contentPadding = PaddingValues(MaterialTheme.spacing.small),
         columns = GridCells.Adaptive(minSize = 260.dp),
         modifier = Modifier.fillMaxSize()
     ) {

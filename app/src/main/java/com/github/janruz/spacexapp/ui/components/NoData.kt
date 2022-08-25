@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.github.janruz.spacexapp.ui.theme.spacing
 
 @Composable
 fun NoData(
@@ -19,7 +19,7 @@ fun NoData(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(MaterialTheme.spacing.medium)
     ) {
         Text(
             text = message,

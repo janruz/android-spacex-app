@@ -21,6 +21,7 @@ import com.github.janruz.spacexapp.ui.components.rockets.RocketActiveLabel
 import com.github.janruz.spacexapp.ui.components.rockets.RocketSuccessRateLabel
 import com.github.janruz.spacexapp.ui.theme.border
 import com.github.janruz.spacexapp.R
+import com.github.janruz.spacexapp.ui.theme.spacing
 
 @Composable
 fun RocketCard(
@@ -40,10 +41,10 @@ fun RocketCard(
             AspectRatioImage(imageUrl = rocket.images.firstOrNull())
 
             Row(
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
                 modifier = Modifier
-                    .padding(horizontal = 12.dp)
-                    .padding(top = 12.dp)
+                    .padding(horizontal = MaterialTheme.spacing.small)
+                    .padding(top = MaterialTheme.spacing.small)
             ) {
                 RocketActiveLabel(
                     isActive = rocket.active,
@@ -70,8 +71,8 @@ fun RocketCard(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
-                    .padding(horizontal = 12.dp)
-                    .padding(top = 12.dp)
+                    .padding(horizontal = MaterialTheme.spacing.small)
+                    .padding(top = MaterialTheme.spacing.small)
                     .semantics {
                         contentDescription = context.getString(R.string.semantics_rocket_name)
                     }
@@ -84,7 +85,7 @@ fun RocketCard(
                 maxLines = 6,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
-                    .padding(12.dp)
+                    .padding(MaterialTheme.spacing.small)
                     .semantics {
                         contentDescription = context.getString(R.string.semantics_rocket_description)
                     }

@@ -18,10 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.ui.theme.border
+import com.github.janruz.spacexapp.ui.theme.spacing
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -43,17 +43,17 @@ fun NavDrawerHeader() {
             contentDescription = stringResource(id = R.string.spacex_logo),
             modifier = Modifier
                 .padding(
-                    top = 48.dp,
-                    start = 48.dp,
-                    end = 48.dp,
-                    bottom = 32.dp
+                    top = MaterialTheme.spacing.xxLarge,
+                    start = MaterialTheme.spacing.xxLarge,
+                    end = MaterialTheme.spacing.xxLarge,
+                    bottom = MaterialTheme.spacing.xLarge
                 )
         )
 
         Divider(
             color = MaterialTheme.colors.border,
             modifier = Modifier
-                .padding(horizontal = 32.dp)
+                .padding(horizontal = MaterialTheme.spacing.xLarge)
         )
     }
 }
@@ -67,7 +67,7 @@ fun NavDrawerBody(
     LazyColumn(
         modifier = Modifier
             .background(MaterialTheme.colors.background)
-            .padding(16.dp)
+            .padding(MaterialTheme.spacing.medium)
             .fillMaxSize()
 
     ) {
@@ -80,7 +80,7 @@ fun NavDrawerBody(
                     .clickable {
                         onItemClick(item)
                     }
-                    .padding(16.dp)
+                    .padding(MaterialTheme.spacing.medium)
             ) {
                 Icon(
                     painter = painterResource(id = item.iconId),
@@ -88,7 +88,7 @@ fun NavDrawerBody(
                     contentDescription = stringResource(id = item.titleId)
                 )
 
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(MaterialTheme.spacing.medium))
 
                 Text(
                     text = stringResource(id = item.titleId),

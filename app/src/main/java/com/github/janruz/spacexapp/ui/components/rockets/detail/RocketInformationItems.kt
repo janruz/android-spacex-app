@@ -1,7 +1,5 @@
 package com.github.janruz.spacexapp.ui.components.rockets.detail
 
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material.*
@@ -16,6 +14,7 @@ import com.github.janruz.spacexapp.ui.components.rockets.RocketActiveLabel
 import com.github.janruz.spacexapp.ui.components.rockets.RocketSuccessRateLabel
 import com.github.janruz.spacexapp.ui.theme.negative
 import com.github.janruz.spacexapp.ui.theme.positive
+import com.github.janruz.spacexapp.ui.theme.spacing
 import com.github.janruz.spacexapp.utilities.formatAsDate
 import com.github.janruz.spacexapp.utilities.formatAsNumber
 import com.github.janruz.spacexapp.utilities.openWikipedia
@@ -26,7 +25,7 @@ fun LazyListScope.rocketInformationItems(
 ) {
     item {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
             modifier = modifier
         ) {
             RocketActiveLabel(
@@ -58,7 +57,7 @@ fun LazyListScope.rocketInformationItems(
     }
 
     item {
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
 
         Row(modifier) {
 
@@ -77,7 +76,7 @@ fun LazyListScope.rocketInformationItems(
     }
 
     item {
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
 
         Row(modifier) {
 
@@ -98,7 +97,7 @@ fun LazyListScope.rocketInformationItems(
     item {
         Divider(
             modifier
-                .padding(vertical = 12.dp)
+                .padding(vertical = MaterialTheme.spacing.small)
         )
     }
 
