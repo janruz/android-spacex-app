@@ -4,20 +4,38 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-private val DarkColorPalette = darkColors(
+private val DarkColorPalette = Colors(
     primary = Color.Black,
     primaryVariant = Color.Black,
-    secondary = Red
+    secondary = Red,
+    secondaryVariant = Red,
+    background = Dark,
+    surface = Dark,
+    error = LightError,
+    onPrimary = Color.Black,
+    onSecondary = Color.Black,
+    onBackground = Color.White,
+    onSurface = Color.White,
+    onError = Color.Black,
+    isLight = false
 )
 
-private val LightColorPalette = lightColors(
+private val LightColorPalette = Colors(
     primary = Color.White,
     primaryVariant = Color.White,
-    secondary = Red
+    secondary = Red,
+    secondaryVariant = Red,
+    background = Color.White,
+    surface = Color.White,
+    error = DarkError,
+    onPrimary = Color.Black,
+    onSecondary = Color.White,
+    onBackground = Color.Black,
+    onSurface = Color.Black,
+    onError = Color.White,
+    isLight = true
 )
 
 val Colors.border: Color get() {
