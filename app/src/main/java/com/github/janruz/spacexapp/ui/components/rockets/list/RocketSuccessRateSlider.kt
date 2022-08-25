@@ -4,6 +4,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import com.github.janruz.spacexapp.ui.theme.border
 import kotlin.math.roundToInt
 
@@ -11,7 +12,8 @@ import kotlin.math.roundToInt
 fun RocketSuccessRateSlider(
     successRateFilter: Float,
     setSuccessRateFilter: (Float) -> Unit,
-    onSuccessRateFilterSelected: (UInt) -> Unit
+    onSuccessRateFilterSelected: (UInt) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     var currentValue by remember(successRateFilter) {
         mutableStateOf(successRateFilter)
@@ -36,6 +38,7 @@ fun RocketSuccessRateSlider(
             inactiveTrackColor = MaterialTheme.colors.border,
             inactiveTickColor = MaterialTheme.colors.onBackground,
             activeTickColor = MaterialTheme.colors.onBackground
-        )
+        ),
+        modifier = modifier
     )
 }

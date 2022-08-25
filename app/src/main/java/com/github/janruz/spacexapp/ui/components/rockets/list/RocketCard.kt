@@ -27,74 +27,77 @@ import com.github.janruz.spacexapp.ui.theme.spacing
 @Composable
 fun RocketCard(
     rocket: Rocket,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
 
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onClick() },
-        elevation = 3.dp,
-        border = BorderStroke(width = 1.dp, MaterialTheme.colors.border)
-    ) {
-        Column {
-            AspectRatioImage(
-                imageUrl = rocket.images.firstOrNull(),
-                contentDescription = stringResource(id = R.string.semantics_rocket_image)
-            )
+    Box(modifier) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { onClick() },
+            elevation = 3.dp,
+            border = BorderStroke(width = 1.dp, MaterialTheme.colors.border)
+        ) {
+            Column {
+                AspectRatioImage(
+                    imageUrl = rocket.images.firstOrNull(),
+                    contentDescription = stringResource(id = R.string.semantics_rocket_image)
+                )
 
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
-                modifier = Modifier
-                    .padding(horizontal = MaterialTheme.spacing.small)
-                    .padding(top = MaterialTheme.spacing.small)
-            ) {
-                RocketActiveLabel(
-                    isActive = rocket.active,
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
                     modifier = Modifier
+                        .padding(horizontal = MaterialTheme.spacing.small)
+                        .padding(top = MaterialTheme.spacing.small)
+                ) {
+                    RocketActiveLabel(
+                        isActive = rocket.active,
+                        modifier = Modifier
+                            .semantics {
+                                contentDescription = context.getString(R.string.semantics_rocket_activity)
+                            }
+                    )
+
+                    RocketSuccessRateLabel(
+                        successRate = rocket.successRate,
+                        modifier = Modifier
+                            .semantics {
+                                contentDescription = context.getString(R.string.semantics_rocket_success_rate)
+                            }
+                    )
+                }
+
+                Text(
+                    rocket.name,
+                    style = MaterialTheme.typography.h5,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colors.onBackground,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .padding(horizontal = MaterialTheme.spacing.small)
+                        .padding(top = MaterialTheme.spacing.small)
                         .semantics {
-                            contentDescription = context.getString(R.string.semantics_rocket_activity)
+                            contentDescription = context.getString(R.string.semantics_rocket_name)
                         }
                 )
 
-                RocketSuccessRateLabel(
-                    successRate = rocket.successRate,
+                Text(
+                    rocket.description,
+                    style = MaterialTheme.typography.body1,
+                    color = MaterialTheme.colors.onBackground,
+                    maxLines = 6,
+                    overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
+                        .padding(MaterialTheme.spacing.small)
                         .semantics {
-                            contentDescription = context.getString(R.string.semantics_rocket_success_rate)
+                            contentDescription =
+                                context.getString(R.string.semantics_rocket_description)
                         }
                 )
             }
-
-            Text(
-                rocket.name,
-                style = MaterialTheme.typography.h5,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colors.onBackground,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier
-                    .padding(horizontal = MaterialTheme.spacing.small)
-                    .padding(top = MaterialTheme.spacing.small)
-                    .semantics {
-                        contentDescription = context.getString(R.string.semantics_rocket_name)
-                    }
-            )
-
-            Text(
-                rocket.description,
-                style = MaterialTheme.typography.body1,
-                color = MaterialTheme.colors.onBackground,
-                maxLines = 6,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier
-                    .padding(MaterialTheme.spacing.small)
-                    .semantics {
-                        contentDescription =
-                            context.getString(R.string.semantics_rocket_description)
-                    }
-            )
         }
     }
 }

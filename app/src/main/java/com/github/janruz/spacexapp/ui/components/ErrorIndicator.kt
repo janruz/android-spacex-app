@@ -17,13 +17,12 @@ import com.github.janruz.spacexapp.ui.theme.spacing
 @Composable
 fun ErrorIndicator(
     message: String,
-    onTryAgain: () -> Unit
+    onTryAgain: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(MaterialTheme.spacing.medium)
+        modifier = modifier
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium),

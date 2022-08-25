@@ -32,12 +32,10 @@ data class NavDrawerItem(
 ) : Parcelable
 
 @Composable
-fun NavDrawerHeader() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colors.background)
-    ) {
+fun NavDrawerHeader(
+    modifier: Modifier = Modifier
+) {
+    Column(modifier) {
         Image(
             painter = painterResource(id = R.drawable.spacex_logo),
             contentDescription = stringResource(id = R.string.semantics_spacex_logo),
@@ -62,15 +60,10 @@ fun NavDrawerHeader() {
 fun NavDrawerBody(
     items: List<NavDrawerItem>,
     activeItemId: String,
-    onItemClick: (NavDrawerItem) -> Unit
+    onItemClick: (NavDrawerItem) -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    LazyColumn(
-        modifier = Modifier
-            .background(MaterialTheme.colors.background)
-            .padding(MaterialTheme.spacing.medium)
-            .fillMaxSize()
-
-    ) {
+    LazyColumn(modifier) {
 
         items(items) { item ->
 

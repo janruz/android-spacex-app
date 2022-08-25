@@ -19,10 +19,10 @@ import com.github.janruz.spacexapp.viewmodels.RocketActiveFilter
 
 @Composable
 fun RocketFilters(
-    state: RocketFiltersState
+    state: RocketFiltersState,
+    modifier: Modifier = Modifier
 ) {
-
-    Column {
+    Column(modifier) {
         Text(
             text = stringResource(id = R.string.rocket_activity),
             style = MaterialTheme.typography.subtitle1,

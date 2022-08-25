@@ -19,10 +19,12 @@ import com.github.janruz.spacexapp.ui.theme.spacing
 fun AppBar(
     showLogo: Boolean,
     title: String?,
-    onDrawerIconClick: () -> Unit
+    onDrawerIconClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     TopAppBar(
-        backgroundColor = MaterialTheme.colors.background
+        backgroundColor = MaterialTheme.colors.background,
+        modifier = modifier
     ) {
         IconButton(onClick = onDrawerIconClick) {
             Icon(
@@ -53,12 +55,14 @@ fun AnimatedAppBar(
     visible: Boolean,
     showLogo: Boolean,
     title: String?,
-    onDrawerIconClick: () -> Unit
+    onDrawerIconClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     AnimatedVisibility(
         visible = visible,
         enter = slideInVertically { -it },
-        exit = slideOutVertically { -it }
+        exit = slideOutVertically { -it },
+        modifier = modifier
     ) {
         AppBar(showLogo, title, onDrawerIconClick)
     }

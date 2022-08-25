@@ -24,7 +24,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun RocketsList(
-    state: RocketsListState
+    state: RocketsListState,
+    modifier: Modifier = Modifier
 ) {
     var rocketCardsVisible by rememberSaveable { mutableStateOf(false) }
 
@@ -40,7 +41,7 @@ fun RocketsList(
         horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
         contentPadding = PaddingValues(MaterialTheme.spacing.small),
         columns = GridCells.Adaptive(minSize = 260.dp),
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier
     ) {
         maxLineSpanItem {
             RocketFilters(state = rememberRocketFiltersState(state))

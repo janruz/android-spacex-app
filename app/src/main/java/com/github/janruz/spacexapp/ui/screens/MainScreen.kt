@@ -1,9 +1,15 @@
 package com.github.janruz.spacexapp.ui.screens
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.github.janruz.spacexapp.ui.components.AnimatedAppBar
@@ -12,6 +18,7 @@ import com.github.janruz.spacexapp.ui.components.NavDrawerHeader
 import com.github.janruz.spacexapp.ui.navigation.NavConstants
 import com.github.janruz.spacexapp.ui.navigation.Navigator
 import com.github.janruz.spacexapp.ui.navigation.SetupNavigation
+import com.github.janruz.spacexapp.ui.theme.spacing
 import com.github.janruz.spacexapp.utilities.isRocketDetail
 import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
 import kotlinx.coroutines.launch
@@ -57,7 +64,11 @@ fun MainScreen(
             )
         },
         drawerContent = {
-            NavDrawerHeader()
+            NavDrawerHeader(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colors.background)
+            )
             NavDrawerBody(
                 items = NavConstants.DRAWER_ITEMS,
                 activeItemId = activeDrawerItem.id,
@@ -66,7 +77,11 @@ fun MainScreen(
                         scaffoldState.drawerState.close()
                         navigator.toDrawerItem(item)
                     }
-                }
+                },
+                modifier = Modifier
+                    .background(MaterialTheme.colors.background)
+                    .padding(MaterialTheme.spacing.medium)
+                    .fillMaxSize()
             )
         }
     ) { paddingValues ->

@@ -1,6 +1,10 @@
 package com.github.janruz.spacexapp.ui.screens.company
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.janruz.spacexapp.R
@@ -8,6 +12,7 @@ import com.github.janruz.spacexapp.data.models.Company
 import com.github.janruz.spacexapp.ui.components.ErrorIndicator
 import com.github.janruz.spacexapp.ui.components.LoadingIndicator
 import com.github.janruz.spacexapp.ui.components.company.CompanyInfo
+import com.github.janruz.spacexapp.ui.theme.spacing
 import com.github.janruz.spacexapp.utilities.Status
 
 @Composable
@@ -19,7 +24,13 @@ fun CompanyInfoScreen(
     when(companyStatus) {
         Status.SUCCESS -> company?.let { CompanyInfo(company) }
         Status.FAILURE -> {
-            ErrorIndicator(message = stringResource(id = R.string.error_get_company), onTryAgain)
+            ErrorIndicator(
+                message = stringResource(id = R.string.error_get_company),
+                onTryAgain,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(MaterialTheme.spacing.medium)
+            )
         }
         Status.LOADING -> LoadingIndicator()
         Status.NONE -> {}
