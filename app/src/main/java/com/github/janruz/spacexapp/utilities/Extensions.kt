@@ -19,15 +19,6 @@ val NavDestination.isRocketDetail: Boolean get() {
     return this.route?.startsWith(ROCKET_DETAIL_SCREEN_PREFIX) ?: false
 }
 
-fun<T> Result<T?>.ifSuccessGetOrNull(action: (T) -> Unit): Result<T?> {
-    if(isSuccess) {
-        getOrNull()?.let {
-            action(it)
-        }
-    }
-    return this
-}
-
 suspend fun MutableState<Status>.loading() {
     // if the previous status is failure, add 1 second delay so that the UI is showing loading
     // indicator for at least 1 second to avoid flickering between loading and error screen

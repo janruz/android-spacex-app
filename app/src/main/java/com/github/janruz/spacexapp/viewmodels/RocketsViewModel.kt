@@ -9,7 +9,6 @@ import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.models.Rocket
 import com.github.janruz.spacexapp.data.repositories.RocketsRepository
 import com.github.janruz.spacexapp.utilities.Status
-import com.github.janruz.spacexapp.utilities.ifSuccessGetOrNull
 import com.github.janruz.spacexapp.utilities.loading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -55,14 +54,14 @@ class RocketsViewModel @Inject constructor(
 
             _rocketsStatus.loading()
 
-            val cacheResult = rocketsRepository.getRocketsFromCache().ifSuccessGetOrNull {
-                _allRockets.value = it
-                _rocketsStatus.value = Status.SUCCESS
+            val cacheResult = rocketsRepository.getRocketsFromCache()
+            if(cacheResult.isSuccess) {
+                handleSuccessResult(cacheResult)
             }
 
-            val apiResult = rocketsRepository.fetchRockets().ifSuccessGetOrNull {
-                _allRockets.value = it
-                _rocketsStatus.value = Status.SUCCESS
+            val apiResult = rocketsRepository.fetchRockets()
+            if(apiResult.isSuccess) {
+                handleSuccessResult(apiResult)
             }
 
             when {
@@ -73,6 +72,13 @@ class RocketsViewModel @Inject constructor(
                     _messageId.emit(R.string.error_fetching_api_showing_data_from_cache)
                 }
             }
+        }
+    }
+
+    private fun handleSuccessResult(result: Result<List<Rocket>?>) {
+        result.getOrNull()?.let {
+            _allRockets.value = it
+            _rocketsStatus.value = Status.SUCCESS
         }
     }
 }

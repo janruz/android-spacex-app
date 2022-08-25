@@ -8,7 +8,6 @@ import com.github.janruz.spacexapp.R
 import com.github.janruz.spacexapp.data.models.Company
 import com.github.janruz.spacexapp.data.repositories.CompanyRepository
 import com.github.janruz.spacexapp.utilities.Status
-import com.github.janruz.spacexapp.utilities.ifSuccessGetOrNull
 import com.github.janruz.spacexapp.utilities.loading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -44,14 +43,14 @@ class CompanyViewModel @Inject constructor(
 
             _companyStatus.loading()
 
-            val cacheResult = companyRepository.getCompanyFromCache().ifSuccessGetOrNull {
-                _company.value = it
-                _companyStatus.value = Status.SUCCESS
+            val cacheResult = companyRepository.getCompanyFromCache()
+            if(cacheResult.isSuccess) {
+                handleSuccessResult(cacheResult)
             }
 
-            val apiResult = companyRepository.fetchCompany().ifSuccessGetOrNull {
-                _company.value = it
-                _companyStatus.value = Status.SUCCESS
+            val apiResult = companyRepository.fetchCompany()
+            if(apiResult.isSuccess) {
+                handleSuccessResult(apiResult)
             }
 
             when {
@@ -62,6 +61,13 @@ class CompanyViewModel @Inject constructor(
                     _messageId.emit(R.string.error_fetching_api_showing_data_from_cache)
                 }
             }
+        }
+    }
+
+    private fun handleSuccessResult(result: Result<Company?>) {
+        result.getOrNull()?.let {
+            _company.value = it
+            _companyStatus.value = Status.SUCCESS
         }
     }
 }
