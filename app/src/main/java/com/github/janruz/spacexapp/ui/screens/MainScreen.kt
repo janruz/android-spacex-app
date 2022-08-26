@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.github.janruz.spacexapp.ui.components.AnimatedAppBar
 import com.github.janruz.spacexapp.ui.components.NavDrawerBody
@@ -20,7 +21,6 @@ import com.github.janruz.spacexapp.ui.navigation.Navigator
 import com.github.janruz.spacexapp.ui.navigation.SetupNavigation
 import com.github.janruz.spacexapp.ui.theme.spacing
 import com.github.janruz.spacexapp.utilities.isRocketDetail
-import com.github.janruz.spacexapp.viewmodels.RocketsViewModel
 import kotlinx.coroutines.launch
 
 /**
@@ -38,8 +38,8 @@ fun MainScreen(
 
     var activeDrawerItem by rememberSaveable { mutableStateOf(NavConstants.DRAWER_ITEMS.first()) }
 
-    LaunchedEffect(Unit) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+    DisposableEffect(navController) {
+        val navListener = NavController.OnDestinationChangedListener { _, destination, _ ->
             appBarVisible = !destination.isRocketDetail
 
             destination.route?.let { route ->
@@ -48,6 +48,12 @@ fun MainScreen(
                     activeDrawerItem = item
                 }
             }
+        }
+
+        navController.addOnDestinationChangedListener(navListener)
+
+        onDispose {
+            navController.removeOnDestinationChangedListener(navListener)
         }
     }
 
