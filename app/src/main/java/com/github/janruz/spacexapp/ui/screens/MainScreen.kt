@@ -10,6 +10,7 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -73,6 +74,7 @@ fun MainScreen(
                 }
             )
         },
+        drawerShape = RectangleShape,
         drawerContent = {
             NavDrawerHeader(
                 modifier = Modifier
