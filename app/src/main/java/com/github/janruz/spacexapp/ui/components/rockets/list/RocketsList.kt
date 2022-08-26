@@ -31,15 +31,7 @@ fun RocketsList(
     state: RocketsListState,
     modifier: Modifier = Modifier
 ) {
-    var rocketCardsVisible by rememberSaveable { mutableStateOf(false) }
-
-    LaunchedEffect(state.rockets) {
-        if(!rocketCardsVisible && state.rockets.isNotEmpty()) {
-            delay(100)
-            rocketCardsVisible = true
-        }
-    }
-
+    
     LazyVerticalGrid(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
         horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small),
