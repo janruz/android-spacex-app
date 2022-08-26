@@ -38,7 +38,7 @@ fun MainScreen(
 
     var appBarVisible by rememberSaveable { mutableStateOf(true) }
 
-    var activeDrawerItem by rememberSaveable { mutableStateOf(NavConstants.DRAWER_ITEMS.first()) }
+    var currentDrawerItem by rememberSaveable { mutableStateOf(NavConstants.DRAWER_ITEMS.first()) }
 
     DisposableEffect(navController) {
         val navListener = NavController.OnDestinationChangedListener { _, destination, _ ->
@@ -47,7 +47,7 @@ fun MainScreen(
             destination.route?.let { route ->
 
                 NavConstants.DRAWER_ITEMS.getNavItemOfRoute(route)?.let { item ->
-                    activeDrawerItem = item
+                    currentDrawerItem = item
                 }
             }
         }
@@ -67,8 +67,8 @@ fun MainScreen(
         topBar = {
             AnimatedAppBar(
                 visible = appBarVisible,
-                showLogo = activeDrawerItem.id == NavConstants.COMPANY_INFO_SCREEN,
-                title = stringResource(id = activeDrawerItem.titleId),
+                showLogo = currentDrawerItem.id == NavConstants.COMPANY_SECTION,
+                title = stringResource(id = currentDrawerItem.titleId),
                 onDrawerIconClick = {
                     scope.launch { scaffoldState.drawerState.open() }
                 }
@@ -83,7 +83,7 @@ fun MainScreen(
             )
             NavDrawerBody(
                 items = NavConstants.DRAWER_ITEMS,
-                activeItemId = activeDrawerItem.id,
+                activeItemId = currentDrawerItem.id,
                 onItemClick = { item ->
                     scope.launch {
                         scaffoldState.drawerState.close()

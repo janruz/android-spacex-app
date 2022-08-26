@@ -39,7 +39,7 @@ data class NavDrawerItem(
 ) : Parcelable
 
 /**
- * Defines the header of navigation drawer.
+ * Defines the header of the navigation drawer.
  */
 @Composable
 fun NavDrawerHeader(

@@ -43,6 +43,7 @@ fun RocketDetailPortrait(
                     CloseIcon(onClick = onDismiss)
                 }
             }
+
             rocketInformationItems(
                 rocket,
                 modifier = Modifier.padding(horizontal = spacing)
