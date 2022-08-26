@@ -6,8 +6,6 @@ It is an Android application written in Kotlin and Jetpack Compose that connects
 ## 📱 Features
 The app implements displaying data from 2 sections of the SpaceX REST API. On the start screen it displays information about SpaceX such as valuation, current CEO... There is also another screen whose purpose is showing rockets. To switch between the screens, feel free to use the navigation drawer.
 
-![Navigation drawer](./assets/screenshot_nav_drawer.jpg)
-
 When starting the application for the first time, it displays a loading indicator as there is no data in the cache to display and as the API request takes some time to finish. As soon as a response from the API is received, the app saves data to local cache (implemented as a JSON file in the internal storage) and displays the data to the user.
 
 Next time, the app shows you cached data straight away and initiates an API request in the background trying to fetch more up-to-date information. If the request fails, the app notifies you about it via a toast telling you that you are in the offline mode. The app is, however, fully funtional in the offline mode as well since it caches all the data received from the API.
