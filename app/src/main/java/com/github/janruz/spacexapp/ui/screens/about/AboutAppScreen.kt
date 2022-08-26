@@ -10,6 +10,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.janruz.spacexapp.R
+import com.github.janruz.spacexapp.ui.theme.spacing
 
 /**
  * A screen showing information about this app and its purpose
@@ -22,7 +23,7 @@ fun AboutAppScreen() {
         color = MaterialTheme.colors.onBackground,
         textAlign = TextAlign.Center,
         modifier = Modifier
-            .padding(16.dp)
+            .padding(MaterialTheme.spacing.medium)
     )
 }
 

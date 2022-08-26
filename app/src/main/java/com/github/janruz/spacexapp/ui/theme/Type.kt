@@ -13,3 +13,15 @@ val Typography = Typography(
         fontSize = 16.sp
     )
 )
+
+val Typography.title: TextStyle get() = TextStyle(
+    fontWeight = FontWeight.Bold,
+    fontSize = 24.sp,
+    letterSpacing = 0.sp
+)
+
+val Typography.label: TextStyle get() =  TextStyle(
+    fontWeight = FontWeight.Bold,
+    fontSize = 16.sp,
+    letterSpacing = 0.15.sp
+)

@@ -3,7 +3,7 @@ package com.github.janruz.spacexapp.data.models
 import com.squareup.moshi.Json
 
 /**
- * The Company model class used throughtout the application.
+ * The Company model class used throughout the application.
  */
 data class Company(
     val id: String,
@@ -66,6 +66,5 @@ val CompanyFromApi.asCompany: Company get() {
         coo = this.coo,
         valuation = this.valuation,
         summary = this.summary
-
     )
 }

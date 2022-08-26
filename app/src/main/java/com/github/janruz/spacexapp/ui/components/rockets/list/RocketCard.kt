@@ -24,6 +24,7 @@ import com.github.janruz.spacexapp.ui.components.rockets.RocketActiveLabel
 import com.github.janruz.spacexapp.ui.components.rockets.RocketSuccessRateLabel
 import com.github.janruz.spacexapp.ui.theme.border
 import com.github.janruz.spacexapp.ui.theme.spacing
+import com.github.janruz.spacexapp.ui.theme.title
 
 /**
  * Displays a card containing basic information about the given rocket
@@ -79,8 +80,7 @@ fun RocketCard(
 
                 Text(
                     rocket.name,
-                    style = MaterialTheme.typography.h5,
-                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.title,
                     color = MaterialTheme.colors.onBackground,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,

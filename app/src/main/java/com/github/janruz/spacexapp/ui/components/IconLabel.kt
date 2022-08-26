@@ -40,7 +40,7 @@ fun IconLabel(
             text = text,
             color = color,
             modifier = Modifier
-                .clip(RoundedCornerShape(4.dp))
+                .clip(MaterialTheme.shapes.small)
                 .padding(
                     vertical = MaterialTheme.spacing.xxSmall,
                     horizontal = MaterialTheme.spacing.xSmall

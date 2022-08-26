@@ -6,6 +6,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import com.github.janruz.spacexapp.ui.theme.label
 
 /**
  * Displays a text along with a label describing the meaning of the text aligned in a column.
@@ -19,9 +20,8 @@ fun InfoColumn(
     Column(modifier) {
         Text(
             text = label,
-            style = MaterialTheme.typography.subtitle1,
+            style = MaterialTheme.typography.label,
             color = MaterialTheme.colors.onBackground,
-            fontWeight = FontWeight.Bold
         )
 
         Text(
