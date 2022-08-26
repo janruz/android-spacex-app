@@ -117,7 +117,11 @@ class RocketsFileCacheStorageTest {
                         successRate = 40U,
                         images = listOf(
                             "https://farm5.staticflickr.com/4599/38583829295_581f34dd84_b.jpg"
-                        )
+                        ),
+                        mass = 3829893,
+                        height = 188f,
+                        diameter = 12f,
+                        wikipediaUrl = "https://cs.wikipedia.org/"
                     ),
                     Rocket(
                         id = "5e9d0d95eda69973a809d1ec",
@@ -128,7 +132,11 @@ class RocketsFileCacheStorageTest {
                         successRate = 60U,
                         images = listOf(
                             "https://farm1.staticflickr.com/929/28787338307_3453a11a77_b.jpg"
-                        )
+                        ),
+                        mass = 5379924,
+                        height = 97f,
+                        diameter = 8f,
+                        wikipediaUrl = "https://cs.wikipedia.org/"
                     ),
                     Rocket(
                         id = "5e9d0d96eda699382d09d1ee",
@@ -139,7 +147,11 @@ class RocketsFileCacheStorageTest {
                         successRate = 80U,
                         images = listOf(
                             "https://live.staticflickr.com/65535/48954138962_ee541e6755_b.jpg"
-                        )
+                        ),
+                        mass = 429048294,
+                        height = 132f,
+                        diameter = 17f,
+                        wikipediaUrl = "https://cs.wikipedia.org/"
                     )
                 )
             }
@@ -154,7 +166,11 @@ class RocketsFileCacheStorageTest {
                         successRate = 72U,
                         images = listOf(
                             "https://www.google.com"
-                        )
+                        ),
+                        mass = 8989424,
+                        height = 48f,
+                        diameter = 7f,
+                        wikipediaUrl = "https://cs.wikipedia.org/"
                     ),
                     Rocket(
                         id = "28032dasda983jksdf232",
@@ -165,7 +181,11 @@ class RocketsFileCacheStorageTest {
                         successRate = 82U,
                         images = listOf(
                             "https://www.stackoverflow.com"
-                        )
+                        ),
+                        mass = 8983958,
+                        height = 85f,
+                        diameter = 8f,
+                        wikipediaUrl = "https://cs.wikipedia.org/"
                     )
                 )
             }
