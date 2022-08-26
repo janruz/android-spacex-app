@@ -19,6 +19,7 @@ import com.github.janruz.spacexapp.ui.components.NavDrawerHeader
 import com.github.janruz.spacexapp.ui.navigation.NavConstants
 import com.github.janruz.spacexapp.ui.navigation.Navigator
 import com.github.janruz.spacexapp.ui.navigation.SetupNavigation
+import com.github.janruz.spacexapp.ui.navigation.getNavItemOfRoute
 import com.github.janruz.spacexapp.ui.theme.spacing
 import com.github.janruz.spacexapp.utilities.isRocketDetail
 import kotlinx.coroutines.launch
@@ -44,7 +45,7 @@ fun MainScreen(
 
             destination.route?.let { route ->
 
-                NavConstants.DRAWER_ITEMS.find { it.id == route }?.let { item ->
+                NavConstants.DRAWER_ITEMS.getNavItemOfRoute(route)?.let { item ->
                     activeDrawerItem = item
                 }
             }

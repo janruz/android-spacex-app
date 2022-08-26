@@ -26,13 +26,14 @@ import kotlinx.parcelize.Parcelize
 
 /**
  * Represents a single menu item in the navigation drawer
- * @param id the unique identifier of this menu item (ideally the navigation route
- * of the corresponding destination).
+ * @param id the unique identifier of this menu item
+ * @param defaultRoute the default navigation route of the corresponding nav drawer item section
  * @param titleId the string resource id of the title shown in the drawer
  */
 @Parcelize
 data class NavDrawerItem(
     val id: String,
+    val defaultRoute: String,
     @StringRes val titleId: Int,
     @DrawableRes val iconId: Int
 ) : Parcelable

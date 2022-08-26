@@ -31,7 +31,7 @@ fun SetupNavigation(
 
         navigation(
             startDestination = NavConstants.ROCKETS_LIST_SCREEN,
-            route = NavConstants.ROCKETS_GRAPH
+            route = NavConstants.ROCKETS_SECTION
         ) {
             rocketsComposable(
                 navController,

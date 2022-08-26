@@ -29,7 +29,7 @@ fun NavGraphBuilder.rocketDetailComposable(
         )
     ) { backStackEntry ->
         val parentEntry = remember(backStackEntry) {
-            navController.getBackStackEntry(NavConstants.ROCKETS_GRAPH)
+            navController.getBackStackEntry(NavConstants.ROCKETS_SECTION)
         }
 
         val rocketsViewModel = hiltViewModel<RocketsViewModel>(parentEntry)

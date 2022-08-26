@@ -26,6 +26,6 @@ class Navigator(
     }
 
     val toDrawerItem: (NavDrawerItem) -> Unit = { item ->
-        navController.navigate(item.id)
+        navController.navigate(item.defaultRoute)
     }
 }
