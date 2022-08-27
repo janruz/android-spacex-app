@@ -55,8 +55,9 @@ API request fo finish) ✅
   - The app caches data fetched from the API locally as a JSON file saved in the internal storage.
 - Use one unit and one instrumentation test as an example of these features ✅
   - There are 2 unit tests (tests in the "test" source set running on JVM) and 2 instrumentation tests (tests in the "androidTest" source set running on an emulator or real Android device). One of the instrumentation tests is a test of a class that just requires android context and the other is a Compose UI test.
-- Deadline: I promised to submit the assignment in 10-12 days. The initial meeting with Anička took place on Tuesday 16th, which means I am supposed to hand in the task between Friday 26th and Sunday 28th.
-
+- Deadline: I promised to submit the assignment in 10-12 days. The initial meeting with Anička took place on Tuesday 16th, which means I am supposed to hand in the task between Friday 26th and Sunday 28th. ✅
+  - Submitted on Saturday 27th.
+  
 ## ❗️ Important
 This app has been developed by Jan Růžička as an **interview task for a job application at Applifting.**
 
