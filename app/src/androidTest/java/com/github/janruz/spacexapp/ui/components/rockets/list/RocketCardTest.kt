@@ -41,7 +41,7 @@ class RocketCardTest {
                 useUnmergedTree = true
             )
             .assertExists()
-            .assert(hasText(text = rocket.name, substring = true))
+            .assert(hasText(text = rocket.description, substring = true))
 
         composeRule
             .onNodeWithContentDescription(
