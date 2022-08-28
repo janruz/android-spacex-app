@@ -2,7 +2,6 @@ package com.github.janruz.spacexapp.ui.navigation
 
 import androidx.navigation.NavHostController
 import com.github.janruz.spacexapp.ui.components.NavDrawerItem
-import com.github.janruz.spacexapp.ui.navigation.NavConstants.ROCKETS_LIST_SCREEN
 import com.github.janruz.spacexapp.ui.navigation.NavConstants.ROCKET_DETAIL_SCREEN_PREFIX
 
 /**
@@ -29,7 +28,7 @@ class Navigator(
     val toDrawerItem: (NavDrawerItem) -> Unit = { item ->
         navController.navigate(item.defaultRoute) {
             launchSingleTop = true
-            popUpTo(item.defaultRoute)
+            popUpTo(navController.graph.startDestinationId)
         }
     }
 }
